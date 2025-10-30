@@ -157,15 +157,33 @@
     .watermark { opacity: .6; font-size: 12px; text-align: center; margin-top: 16px; color: var(--muted); } /* Prilagođena boja vodenog žiga */
     
     /* Modal dobrodošlice */
-    .modal { position: fixed; inset: 0; background: rgba(2, 6, 17, .66); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+    .modal { 
+        position: fixed; 
+        inset: 0; 
+        background: rgba(2, 6, 17, .66); 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        z-index: 9999; 
+    }
     .modal-card {
-      max-width: 680px; margin: 16px;
+      max-width: 680px; 
+        margin: 16px;
       background: var(--glass); /* Svijetla pozadina */
       border: var(--border);
-      border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow);
+      border-radius: 16px; 
+        padding: 20px 22px; 
+        box-shadow: var(--shadow);
     }
-    .modal h3 { margin: 0 0 8px 0; font-size: 24px; color: var(--text); }
-    .modal .count { font-weight: 800; color: var(--primary); } /* Naglašena boja tajmera */
+    .modal h3 { 
+        margin: 0 0 8px 0; 
+        font-size: 24px; 
+        color: var(--text); 
+    }
+    .modal .count { 
+        font-weight: 800; 
+        color: var(--primary); /* Naglašena boja tajmera */
+    }
   </style>
 </head>
 <body>
@@ -183,7 +201,7 @@
 
   <header class="sticky">
     <div class="wrap">
-      <img src="logo.png" alt="Centrotours" class="logo" />
+            <img src="logo.png" alt="Centrotours" class="logo" />
       <div class="brand">Centrotours • B2B Workshop</div>
       <div class="badges">
         <span class="badge">📍 <strong>Swissotel Sarajevo</strong></span>
@@ -251,14 +269,14 @@
             <div class="checks">
               <label><input type="radio" required name="brojAranzmana" value="do 200"> do 200</label>
               <label><input type="radio" name="brojAranzmana" value="200–500"> 200–500</label>
-              <label><input type="radio" name="brojAranzmana" value="500–1000"> 500–1000</label>
+          _   <label><input type="radio" name="brojAranzmana" value="500–1000"> 500–1000</label>
               <label><input type="radio" name="brojAranzmana" value="preko 1000"> preko 1000</label>
             </div>
           </fieldset>
 
           <fieldset class="group" style="margin-top:12px">
             <legend>Najčešće destinacije koje nudite *</legend>
-            <div class="checks">
+        _     <div class="checks">
               <label><input type="checkbox" name="destinacije" value="Turska"> Turska</label>
               <label><input type="checkbox" name="destinacije" value="Egipat"> Egipat</label>
               <label><input type="checkbox" name="destinacije" value="Tunis"> Tunis</label>
@@ -313,7 +331,7 @@
             </div>
             <div class="field" style="grid-column:1/-1">
               <textarea name="parking" placeholder="Napomena za parking / dolazak"></textarea>
-            </div>
+      _     </div>
           </div>
         </div>
 
@@ -321,7 +339,7 @@
           <div class="group">
             <p class="meta">✅ Saglasan/na sam da Centrotours koristi navedene podatke u svrhu organizacije B2B radionice i daljnje poslovne komunikacije.</p>
             <label style="display:flex; gap:10px; align-items:center; padding: 8px;">
-              <input type="checkbox" required name="saglasnost" value="DA" style="width: auto;"> Potvrđujem saglasnost
+              <input type="checkbox" required name="saglasnost" value="DA" style="width: auto;"> Potvrđujem saglasnost *
             </label>
           </div>
           <div class="grid g-2" style="margin-top:12px">
@@ -354,10 +372,9 @@
   e.prototype={addData:function(o){this.dataList.push(new t(o)),this.dataCache=null},isDark:function(o,t){if(null==this.modules[o][t])throw new Error(o+","+t);return this.modules[o][t]},getModuleCount:function(){return this.moduleCount},make:function(){this.moduleCount=21+4*(this.typeNumber-1),this.modules=new Array(this.moduleCount);for(var o=0;o<this.moduleCount;o++){this.modules[o]=new Array(this.moduleCount);for(var t=0;t<this.moduleCount;t++)this.modules[o][t]=null}
   for(var u=0;u<7;u++)for(var a=0;a<7;a++)this.modules[u][a]=[1,0,0,0,0,0,1][a]||[1,0,0,0,0,0,1][u]||u==0||a==0||u==6||a==6;
   for(var c=this.moduleCount-7; c<this.moduleCount; c++)for(a=0;a<7;a++)this.modules[c][a]=u=([1,0,0,0,0,0,1][a]||[1,0,0,0,0,0,1][c-(this.moduleCount-7)]||a==0||c==this.moduleCount-1||a==6||c==this.moduleCount-7);
-  for(u=0;u<7;u++)for(a=this.moduleCount-7;a<this.moduleCount;a++)this.modules[u][a]=([1,0,0,0,0,0,1][a-(this.moduleCount-7)]||[1,0,0,0,0,0,1][u]||u==0||a==this.moduleCount-1||u==6||a==this.moduleCount-7);
+t   for(u=0;u<7;u++)for(a=this.moduleCount-7;a<this.moduleCount;a++)this.modules[u][a]=([1,0,0,0,0,0,1][a-(this.moduleCount-7)]||[1,0,0,0,0,0,1][u]||u==0||a==this.moduleCount-1||u==6||a==this.moduleCount-7);
   for(var l=8;l<this.moduleCount-8;l++)this.modules[l][6]=this.modules[6][l]=l%2==0;
   var d=(this.dataCache||(this.dataCache=function(o){for(var t=[],e=0;e<o.dataList.length;e++)t.push(o.dataList[e]);return t}(this))),f=[];for(e=0;e<d.length;e++)for(var h=0;h<d[e].getLength();h++)for(var p=7;p>=0;p--)f.push((d[e].data.charCodeAt(h)>>p)&1);
-T
   for(var g=this.moduleCount-1,m=this.moduleCount-1,v=0;g>0;g-=2){6==g&&g--;for(var y=0;y<this.moduleCount;y++){var b=m+(v? -y:y); if(null==this.modules[b][g])this.modules[b][g]=f.length?!!f.shift():!1; if(null==this.modules[b][g-1])this.modules[b][g-1]=f.length?!!f.shift():!1}v=!v}},createDataURL:function(o){var t=this.getModuleCount(),e=o/t,n=document.createElement("canvas");n.width=n.height=t*e;var r=n.getContext("2d");r.fillStyle="#fff",r.fillRect(0,0,n.width,n.height),r.fillStyle="#000";for(var s=0;s<t;s++)for(var i=0;i<t;i++)this.isDark(s,i)&&r.fillRect(i*e,s*e,e,e);return n.toDataURL("image/png")}};
   function a(o,t){var e=i(o); return e?e.createDataURL(t||6):null} window._miniQR=a;
   </script>
@@ -440,7 +457,7 @@ T
           <p>
             <strong>UPUTSTVO:</strong> Skenirajte ovaj QR kod na pultu za registracije radi brze prijave.
             Ovaj kod je jedinstven za vašu agenciju i služi za validaciju vašeg učešća.
-        </p>
+          </p>
           <p class="url">
             <strong>Link za validaciju (za organizatora):</strong><br>
             ${data.verifyURL}
@@ -464,8 +481,19 @@ T
 
     <script>
     // ====== KONFIGURACIJA ======
+    // ⬇️⬇️⬇️ POSTAVITE SVOJ URL OVDJE ⬇️⬇️⬇️
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxf_XqH8M_q5k0nWM4_bfBTnR_0lOJdIozmlcGlErGEffhNElOtYbjjny8W7tdRaqI/exec'; // <<< POSTAVI OVDJE VAŠ Web App URL sa /exec
-    const bgByStep = {1:'destinacija-1.jpg',2:'destinacija-2.jpg',3:'destinacija-3.jpg',4:'hurgada.jpg',5:'destinacija-6.jpg',6:'destinacija-2.jpg',7:'destinacija-3.jpg'};
+    // ⬆️⬆️⬆️ POSTAVITE SVOJ URL OVDJE ⬆️⬆️⬆️
+   
+    const bgByStep = {
+        1:'destinacija-1.jpg', 
+        2:'destinacija-2.jpg', 
+        3:'destinacija-3.jpg', 
+        4:'hurgada.jpg', 
+        5:'destinacija-6.jpg', 
+        6:'destinacija-2.jpg', 
+        7:'destinacija-3.jpg'
+    }; // Ovdje stavite putanje do vaših ljetnjih slika
 
     // ====== UI ELEMENTI ======
     const form = document.getElementById('form');
@@ -491,11 +519,24 @@ T
         if(s<=0){ clearInterval(tick); btn.disabled=false; btn.textContent='Zatvori'; }
       },1000);
       btn.addEventListener('click', ()=>{ if(!btn.disabled) m.style.display='none'; });
+      
+      // Bonus: Automatsko zatvaranje nakon 7 sekundi
+      setTimeout(() => {
+          if (m.style.display !== 'none') { // Ako ga korisnik nije već zatvorio
+              m.style.display = 'none';
+          }
+      }, 7000);
     })();
 
     function setHero(stepIndex){
       const n = stepIndex + 1;
-      hero.style.backgroundImage = `linear-gradient(rgba(2,6,23,.1),rgba(2,6,23,.2)), url('${bgByStep[n] || bgByStep[1]}')`; // Prilagođena prozirnost za svijetli dizajn
+      // Provjerite da li slika postoji prije postavljanja
+      const imgUrl = bgByStep[n] || bgByStep[1];
+      if (imgUrl) {
+          hero.style.backgroundImage = `linear-gradient(rgba(2,6,23,.1),rgba(2,6,23,.2)), url('${imgUrl}')`; // Prilagođena prozirnost za svijetli dizajn
+      } else {
+          hero.style.backgroundImage = 'none'; // Fallback ako slike nisu definirane
+      }
     }
     function show(i){
       steps.forEach((el,idx)=>el.classList.toggle('active', idx===i));
@@ -520,16 +561,18 @@ T
           if(!legend.includes('*')) continue; // Nije obavezna grupa
 
           // Radio (mora biti jedan)
-          const radio = group.querySelector('input[type=radio]');
+          const radio = group.querySelector('input[type=radio][required]');
           if(radio && !group.querySelector('input[type=radio]:checked')) {
-              showToast('Molimo odaberite opciju za: ' + legend.replace('*','').trim());
+              showToast('Molimo odaberite opciju za: '... ' + legend.replace('*','').trim());
               return false;
           }
           // Checkbox (mora biti bar jedan)
-          const check = group.querySelector('input[type=checkbox]');
-          if(check && !group.querySelector('input[type=checkbox]:checked')) {
-              showToast('Molimo odaberite bar jednu opciju za: ' + legend.replace('*','').trim());
-              return false;
+          if (legend.includes('Glavna tržišta') || legend.includes('Najčešće destinacije') || legend.includes('Interes za sastanke')) {
+              const check = group.querySelector('input[type=checkbox]');
+              if(check && !group.querySelector('input[type=checkbox]:checked')) {
+                  showToast('Molimo odaberite bar jednu opciju za: ' + legend.replace('*','').trim());
+                  return false;
+              }
           }
       }
       // Posebna validacija za saglasnost
@@ -618,5 +661,5 @@ T
     setHero(0); show(0);
   </script>
 
-    </body>
+  </body>
 </html>
