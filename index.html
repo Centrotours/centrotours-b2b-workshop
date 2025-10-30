@@ -1,4 +1,3 @@
-<?php /* index.php — Centrotours B2B Workshop (jedna datoteka) */ ?>
 <!DOCTYPE html>
 <html lang="bs">
 <head>
@@ -9,8 +8,7 @@
   <meta name="theme-color" content="#0ea5e9" />
   <style>
     :root{
-      --primary:#0ea5e9; --primary-700:#0284c7;
-      --accent:#22c55e; --bg:#eef9ff; --text:#0b1a2b; --muted:#44627d;
+      --primary:#0ea5e9; --accent:#22c55e; --bg:#eef9ff; --text:#0b1a2b; --muted:#44627d;
       --radius:18px; --shadow:0 14px 44px rgba(2,132,199,.18); --border:1px solid rgba(2,132,199,.18);
       --focus:0 0 0 4px rgba(14,165,233,.22);
     }
@@ -359,18 +357,9 @@
     <path d="M0,80 C240,140 480,0 720,60 C960,120 1200,20 1440,70 L1440,120 L0,120 Z" fill="#c7f1ff"/>
   </svg>
 
-  <!-- Robustni QR generator (QRCode.js — inline, skraćena min verzija) -->
+  <!-- Generisanje stilizovane potvrde (QR bez prikaza URL-a) -->
   <script>
-/*!
- * QRCode.js (inline minimal) — generiše crno/bijeli PNG data:URL
- * MIT (davidshimjs) — prilagođeno za inline upotrebu i kraće.
- */
-!function(o){function n(o){this.mode=e.MODE_8BIT_BYTE,this.data=o}function t(o,n){this.typeNumber=o,this.errorCorrectLevel=n,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}var e={};e.PAD0=236,e.PAD1=17,e.VERSION=4,e.MODE_NUMBER=1,e.MODE_ALPHA_NUM=2,e.MODE_8BIT_BYTE=4,e.ERROR_CORRECT_M=0,e.PATTERN_POSITION_TABLE=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50]],e.getBCHDigit=function(o){var n=0;for(;0!=o;)n++,o>>>=1;return n};var r={PATTERN_POSITION_TABLE:e.PATTERN_POSITION_TABLE,getBCHDigit:e.getBCHDigit};function i(o,n){this.buffer=[],this.length=0,void 0!==o&&this.put(o,n)}i.prototype={get:function(o){return 1==(this.buffer[Math.floor(o/8)]>>>7-o%8&1)},put:function(o,n){for(var t=0;t<n;t++)this.putBit(1==(o>>>n-t-1&1))},putBit:function(o){this.buffer.push(o?1:0),this.length++}};var u={PATTERN_POS_TABLE:e.PATTERN_POSITION_TABLE,getMask:function(o,n,t){switch(o){case 0:return(n+t)%2==0;case 1:return n%2==0;case 2:return t%3==0;case 3:return(n+t)%3==0;case 4:return(Math.floor(n/2)+Math.floor(t/3))%2==0;case 5:return n*t%2+n*t%3==0;case 6:return(n*t%2+n*t%3)%2==0;case 7:return(n*t%3+Math.floor((n+t)%2))%2==0;default:return!1}}};n.prototype={getLength:function(){return this.data.length},write:function(o){for(var n=0;n<this.data.length;n++)o.put(this.data.charCodeAt(n),8)}};var a={};a.createData=function(o,n){for(var t=new i,e=0;e<n.length;e++)n[e].write(t);for(;t.length+4<=8*o;)t.put(0,4);for(;t.length%8!=0;)t.putBit(!1);for(;t.length<8*o;)t.put(236,8),t.length<8*o&&t.put(17,8);for(var r=[],u=0;u<t.buffer.length;u+=8){for(var a=0,s=0;s<8;s++)a=(a<<1)|t.buffer[u+s];r.push(a)}return r};var s={};t.prototype={addData:function(o){this.dataList.push(new n(o)),this.dataCache=null},isDark:function(o,n){return this.modules[o][n]},getModuleCount:function(){return this.moduleCount},make:function(){this.typeNumber=e.VERSION,this.moduleCount=21+4*(this.typeNumber-1),this.modules=new Array(this.moduleCount);for(var o=0;o<this.moduleCount;o++){this.modules[o]=new Array(this.moduleCount);for(var n=0;n<this.moduleCount;n++)this.modules[o][n]=null}this._setupPositionProbePattern(0,0),this._setupPositionProbePattern(this.moduleCount-7,0),this._setupPositionProbePattern(0,this.moduleCount-7),this._setupTimingPattern(),this._setupPositionAdjustPattern(),this._mapData(a.createData(26,this.dataList))},_setupPositionProbePattern:function(o,n){for(var t=-1;t<=7;t++)if(!(o+t<=-1||this.moduleCount<=o+t))for(var e=-1;e<=7;e++)n+e<=-1||this.moduleCount<=n+e||(this.modules[o+t][n+e]=t>=0&&t<=6&&(0==e||6==e)||e>=0&&e<=6&&(0==t||6==t)||t>=2&&t<=4&&e>=2&&e<=4)},_setupTimingPattern:function(){for(var o=8;o<this.moduleCount-8;o++)null===this.modules[o][6]&&(this.modules[o][6]=o%2==0),null===this.modules[6][o]&&(this.modules[6][o]=o%2==0)},_setupPositionAdjustPattern:function(){var o=r.PATTERN_POSITION_TABLE[this.typeNumber];if(o)for(var n=0;n<o.length;n++)for(var t=0;t<o.length;t++){var e=o[n],i=o[t];if(null===this.modules[e][i])for(var u=-2;u<=2;u++)for(var a=-2;a<=2;a++)this.modules[e+u][i+a]=Math.max(Math.abs(u),Math.abs(a))!=2}},_mapData:function(o){for(var n=0,t=0,e=this.moduleCount-1,i=-1,u=this.moduleCount-1;u>0;u-=2){6==u&&u--;for(var a=0;a<this.moduleCount;a++){var s=e-i*a;if(null===this.modules[s][u]){var l=!1;o.length>n&&(l=1==(o[n]>>>7-t&1),t++,t==8&&(n++,t=0)),this.modules[s][u]=l}if(null===this.modules[s][u-1]){var l2=!1;o.length>n&&(l2=1==(o[n]>>>7-t&1),t++,t==8&&(n++,t=0)),this.modules[s][u-1]=l2}}i*=-1}},toDataURL:function(o){o=o||180;var n=this.getModuleCount(),t=document.createElement("canvas");t.width=t.height=o;var e=t.getContext("2d"),r=Math.floor(o/n);e.fillStyle="#fff",e.fillRect(0,0,o,o),e.fillStyle="#000";for(var i=0;i<n;i++)for(var u=0;u<n;u++)this.isDark(i,u)&&e.fillRect(u*r,i*r,r,r);return t.toDataURL("image/png")}};function l(o){var n=new t(e.VERSION,e.ERROR_CORRECT_M);return n.addData(o),n.make(),n.toDataURL(180)}o.QRDataURL=l}(window);
-  </script>
-
-  <!-- Generisanje stilizovane potvrde (bez prikaza URL-a) -->
-  <script>
-  function buildConfirmationHTML(data, qrDataURL){
+  function buildConfirmationHTML(data, qrSrc){
     const base = location.origin + location.pathname.replace(/[^/]+$/,'');
     const css = `
       body{font-family:Arial,Helvetica,sans-serif; margin:0; color:#0f172a; background:#f8fafc}
@@ -387,7 +376,7 @@
       @media (max-width:700px){ .grid{grid-template-columns:1fr} .grid .tt{margin-top:8px} }
       .tt{font-weight:700}
       .row{display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
-      .qr{width:140px; height:140px; border:1px solid #e5e7eb; padding:6px; background:#fff; border-radius:8px}
+      .qr{width:160px; height:160px; border:1px solid #e5e7eb; padding:6px; background:#fff; border-radius:8px}
       .note{font-size:13px; color:#475569}
       .foot{font-size:12px; color:#6b7280; padding:10px 22px 18px}
       .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#eef9ff; border:1px solid #bae6fd; color:#0b1a2b; font-weight:700}
@@ -471,8 +460,8 @@
               <div class="h" style="margin:0 0 6px 0;">QR pristup</div>
               <div class="note">Prikažite ovaj QR kod na ulazu radi validacije prijave.</div>
             </div>
-            ${qrDataURL 
-              ? `<img class="qr" src="${qrDataURL}" alt="QR"/>`
+            ${qrSrc 
+              ? `<img class="qr" src="${qrSrc}" alt="QR"/>`
               : `<div class="qr" style="display:flex;align-items:center;justify-content:center;font-size:12px;color:#64748b;text-align:center">
                    QR nije dostupan
                  </div>`}
@@ -615,7 +604,6 @@
 
     function openReview(){
       const data = gatherData();
-      // Render pregleda
       const rows = [
         ['Naziv agencije', data.nazivAgencije],
         ['Grad / sjedište', data.grad],
@@ -672,6 +660,13 @@
       w.document.open(); w.document.write(html); w.document.close();
     }
 
+    // ——— QR: robustno generisanje preko provjerenog API-ja (brzo i pouzdano)
+    function makeQrSrc(verifyURL){
+      // Ako želiš bez ikakvih eksternih servisa, možemo ubaciti pun JS generator.
+      // Ovdje je provjeren image-endpoint koji telefoni čitaju bez problema:
+      return 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=0&data=' + encodeURIComponent(verifyURL);
+    }
+
     async function handleSubmit(){
       // honeypot
       if((document.getElementById('hp').value||'').trim()){
@@ -704,12 +699,11 @@
           if(j && j.ok===false) throw new Error(j.error||'Greška servera');
         }catch(_){ /* endpoint možda ne vraća JSON – ignoriši */ }
 
-        // QR sa PUNIM verifyURL — robustni generator
-        let qrDataUrl = null;
-        try { qrDataUrl = window.QRDataURL(verifyURL); } catch (err) { console.warn('QR fallback:', err); }
+        // QR SRC sa PUNIM verifyURL (URL NIJE PRIKAZAN U POTVRDI)
+        const qrSrc = makeQrSrc(verifyURL);
 
         // SIROVI HTML -> BLOB URL (stabilno otvaranje)
-        const rawHTML = buildConfirmationHTML(data, qrDataUrl);
+        const rawHTML = buildConfirmationHTML(data, qrSrc);
         const blobUrl = buildConfirmationBlobURL(rawHTML);
 
         if (blobUrl) {
@@ -738,7 +732,6 @@
       try{
         if(confirmationBlobUrl){ URL.revokeObjectURL(confirmationBlobUrl); confirmationBlobUrl=null; }
       }catch(_){}
-      // “reset sesije”: očisti formu i vrati UI na početak
       form.reset();
       success.classList.remove('show');
       form.style.display = '';
@@ -746,7 +739,43 @@
       window.scrollTo({top:0, behavior:'smooth'});
     });
 
-    // Confirm modal flow: init
+    // Navigacija
+    prevBtn.addEventListener('click', ()=>{ if(current>0){ current--; show(current); }});
+    nextBtn.type='button';
+
+    // Confirm modal flow
+    function openReview(){
+      const data = gatherData();
+      const rows = [
+        ['Naziv agencije', data.nazivAgencije],
+        ['Grad / sjedište', data.grad],
+        ['Web', data.web],
+        ['Broj zaposlenih', data.brojZaposlenih],
+        ['Godina osnivanja', data.godinaOsnivanja],
+        ['Ime i prezime', data.imePrezime],
+        ['Pozicija', data.pozicija],
+        ['E-mail', data.email],
+        ['Telefon', data.telefon],
+        ['Tržišta', data.trzista],
+        ['Aranžmana godišnje', data.brojAranzmana],
+        ['Destinacije', data.destinacije],
+        ['Interes hotela', data.sastanak],
+        ['Broj osoba (B2B)', data.brojOsoba],
+        ['Engleski', data.engleski],
+        ['Napomene', data.napomene],
+        ['Networking Dinner', data.vecera],
+        ['Smještaj', data.smjestaj],
+        ['Parking / dolazak', data.parking],
+        ['Saglasnost', data.saglasnost ? 'DA' : 'NE'],
+        ['Potpis', data.potpis]
+      ];
+      reviewBody.innerHTML = rows.map(([k,v])=>`<div class="tt">${k}</div><div>${(v||'').toString().replace(/</g,'&lt;')}</div>`).join('');
+      cModal.style.display='flex';
+    }
+    editBtn.addEventListener('click', ()=>{ cModal.style.display='none'; });
+    confirmSendBtn.addEventListener('click', async ()=>{ cModal.style.display='none'; await handleSubmit(); });
+
+    // Init
     function init(){ setHero(0); show(0); }
     init();
   </script>
