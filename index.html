@@ -157,8 +157,8 @@
         <span class="pbadge">🕒 Prijave do: <em>6. nov 2025</em></span>
       </div>
       <p class="meta" style="margin:6px 0 0 0">
-        Najveći turistički B2B event u BiH – 100+ agencija • 30+ turskih hotela.  
-        Poziv je upućen odabranim partnerima – ispunite prijavu kako bismo vam potvrdili termine sastanaka.
+        Najveći turistički B2B event u BiH – • 30+ turskih hotela.  
+        Poziv je upućen odabranim partnerima – ispunite prijavu kako biste osigurali svoje termine sastanaka.
       </p>
       <p class="meta" style="margin:6px 0 10px 0">Dugme će biti aktivno za <span class="count" id="countdown">7</span>s.</p>
       <button class="btn primary" id="closeWelcome" disabled>Zatvori</button>
@@ -195,9 +195,9 @@
   <main>
     <section class="card">
       <div class="head">
-        <h1 class="title">Prijava na Centrotours -Summer in Türkiye | Workshop 2026</h1>
+        <h1 class="title">Prijava na Centrotours - Summer in Türkiye | Workshop 2026</h1>
         <div class="subtitle">Poziv za odabrane partnere</div>
-        <div class="desc">Dobrodošli! Popunite podatke; naš tim će vas kontaktirati radi potvrde termina sastanaka sa hotelima.</div>
+        <div class="desc">Dobrodošli! Popunite podatke; naš tim će vas kontaktirati radi potvrde vaše prijave.</div>
       </div>
 
       <div class="progress"><span id="bar"></span></div>
@@ -274,7 +274,7 @@
         <!-- KORAK 5: Interes (B2B) -->
         <div class="step" data-step="5">
           <fieldset class="group">
-            <legend>Interes za sastanke (B2B dio) *</legend>
+            <legend>Molimo označite svoje interese kako bismo za Vas kreirali optimalne termine. *</legend>
             <div class="checks">
               <label><input type="checkbox" name="sastanak" value="Porodični hoteli" required> Porodični hoteli</label>
               <label><input type="checkbox" name="sastanak" value="Adults Only hoteli"> Adults Only hoteli</label>
@@ -293,7 +293,7 @@
                 <label><input type="radio" name="engleski" value="Ne"> Ne</label>
               </div>
             </div>
-            <div class="field" style="grid-column:1/-1"><textarea required name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi *"></textarea></div>
+            <div class="field" style="grid-column:1/-1"><textarea required name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi -  (Ukoliko nemate - napišite "nemam") *"></textarea></div>
           </div>
         </div>
 
@@ -301,21 +301,21 @@
         <div class="step" data-step="6">
           <div class="grid g-2">
             <div class="group">
-              <legend>Networking Dinner u Swissotelu? *</legend>
+              <legend>Da li planirate prisustvovati i večeri nakon radionice (Networking Dinner u Swissotelu)?   *</legend>
               <div class="checks">
                 <label><input type="radio" required name="vecera" value="Da"> Da</label>
                 <label><input type="radio" name="vecera" value="Ne"> Ne</label>
               </div>
             </div>
             <div class="group">
-              <legend>Potreban smještaj u Sarajevu? *</legend>
+              <legend>Da li vam je potreban smještaj u Sarajevu?   *</legend>
               <div class="checks">
-                <label><input type="radio" required name="smjestaj" value="Da"> Da</label>
+                <label><input type="radio" required name="smjestaj" value="Da"> Da (max. 1 soba po agenciji)</label>
                 <label><input type="radio" name="smjestaj" value="Ne"> Ne</label>
               </div>
             </div>
             <div class="field" style="grid-column:1/-1">
-              <textarea required name="parking" placeholder="Napomena za parking / dolazak *"></textarea>
+              <textarea required name="parking" placeholder="Napomena za parking / dolazak - (Ukoliko nemate - napišite "nemam") *"></textarea>
             </div>
           </div>
         </div>
@@ -341,7 +341,7 @@
 
       <div class="success" id="success">
         <h2 style="margin:0 0 8px 0">🎉 Hvala vam na prijavi!</h2>
-        <p class="meta">Vaša agencija je uspješno registrovana. Potvrdu možete otvoriti i sačuvati kao PDF.</p>
+        <p class="meta">Vaša agencija je uspješno registrovana. Potvrdu prijave možete otvoriti i sačuvati kao PDF koji je neophodan za ulaz na workshop.</p>
         <div class="download-cta">
           <a id="downloadLink" href="#" rel="noopener">📄 Preuzmi potvrdu (PDF)</a>
           <button type="button" class="finish" id="finishBtn">✅ Završi prijavu</button>
@@ -508,7 +508,7 @@
       const modal = document.getElementById('welcomeModal');
       const btn   = document.getElementById('closeWelcome');
       const ctn   = document.getElementById('countdown');
-      let s = 7;
+      let s = 10;
       const tick = setInterval(()=>{
         s--; ctn.textContent = s;
         if(s<=0){
