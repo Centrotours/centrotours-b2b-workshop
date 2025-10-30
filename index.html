@@ -3,24 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Prijava – Centrotours B2B Workshop 2025</title>
+  <title>Prijava na Centrotours -Summer in Türkiye | Workshop 2026</title>
   <link rel="icon" href="favicon.ico" />
   <meta name="theme-color" content="#0ea5e9" />
   <style>
-    /* ===== Design Tokens ===== */
     :root{
-      --primary:#0ea5e9;         /* light sky */
-      --primary-700:#0284c7;
-      --accent:#22c55e;          /* green */
-      --bg:#eef9ff;              /* soft */
-      --text:#0b1a2b; 
-      --muted:#44627d;
-      --radius:18px; 
-      --shadow:0 14px 44px rgba(2,132,199,.18);
-      --border:1px solid rgba(2,132,199,.18);
+      --primary:#0ea5e9; --primary-700:#0284c7;
+      --accent:#22c55e; --bg:#eef9ff; --text:#0b1a2b; --muted:#44627d;
+      --radius:18px; --shadow:0 14px 44px rgba(2,132,199,.18); --border:1px solid rgba(2,132,199,.18);
       --focus:0 0 0 4px rgba(14,165,233,.22);
     }
-    /* ===== Base ===== */
     html,body{height:100%}
     body{
       margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
@@ -36,40 +28,46 @@
     .hero-bg::after{
       content:""; position:absolute; inset:0;
       background:
-        radial-gradient(500px 500px at 85% 10%, rgba(255,235,140,.55), transparent 60%),
+        radial-gradient(500px 500px at 85% 10%, rgba(255,235,140,.50), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,0));
       pointer-events:none;
     }
 
-    /* ===== Header ===== */
+    /* Header */
     header.sticky{
       position:sticky; top:0; z-index:50; backdrop-filter:saturate(130%) blur(10px);
       background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.75));
       border-bottom:var(--border);
     }
-    .wrap{max-width:1120px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; gap:12px}
+    .wrap{max-width:1120px; margin:0 auto; padding:12px 16px}
+    .headerRow{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center}
     .logo{height:40px; filter:drop-shadow(0 4px 10px rgba(2,132,199,.25))}
-    .brand{font-weight:800; letter-spacing:.2px; white-space:nowrap}
-    .badges{margin-left:auto; display:flex; gap:8px; flex-wrap:wrap}
-    .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(2,132,199,.2);
-      background:#ffffffbf; color:#0b1a2b; font-size:13px}
-    .badge strong{color:#0b1a2b}
+    .brand-soft{font-weight:700; color:#13405a; opacity:.85} /* manje boldirano, nježnije */
+    .badgeRow{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:8px
+    }
+    .pbadge{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px;
+      border-radius:999px; border:1px solid rgba(2,132,199,.2);
+      background:#ffffffbf; color:#0b1a2b; font-size:15px; font-weight:700;
+    }
+    .pbadge em{font-style:normal; color:#0b1a2b}
 
-    /* ===== Main Card ===== */
+    /* Main card */
     main{max-width:1120px; margin:24px auto; padding:0 12px 80px}
     .card{border:var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
       background:linear-gradient(180deg, #ffffffcc, #ffffff)}
-    .sub{color:var(--muted); font-size:14px}
-    .title{font-size:clamp(22px,3.4vw,32px); font-weight:800; margin:0}
-    .head{display:grid; grid-template-columns:1fr auto; gap:12px; padding:18px; border-bottom:var(--border);
+    .head{display:flex; flex-direction:column; gap:6px; padding:18px; border-bottom:var(--border);
       background:linear-gradient(180deg, #ffffff, #f7fdff)}
-    .head .badge{align-self:start}
+    .title{font-size:clamp(22px,3.4vw,32px); font-weight:800; margin:0}
+    .subtitle{color:#0b1a2b; font-weight:700}
+    .desc{color:#47667f}
 
-    /* ===== Progress ===== */
+    /* Progress */
     .progress{--h:10px; height:var(--h); margin:12px 18px; background:#e8f6ff; border:var(--border); border-radius:999px; overflow:hidden}
     .progress>span{display:block; height:100%; width:0; background:linear-gradient(90deg, var(--accent), var(--primary)); transition:width .4s ease}
 
-    /* ===== Form ===== */
+    /* Form */
     form{padding:16px 18px 10px}
     .step{display:none; animation:fade .45s ease}
     .step.active{display:block}
@@ -84,9 +82,7 @@
     }
     .field input::placeholder,.field textarea::placeholder{color:#6c94ad}
     .field textarea{min-height:110px; resize:vertical}
-    .field input:focus,.field select:focus,.field textarea:focus{
-      border-color:#0284c7; box-shadow:var(--focus)
-    }
+    .field input:focus,.field select:focus,.field textarea:focus{ border-color:#0284c7; box-shadow:var(--focus) }
     .group{border:1px dashed rgba(2,132,199,.35); padding:12px; border-radius:12px; background:#ffffff}
     .group legend{font-weight:800; color:#0b1a2b}
     .checks{display:grid; gap:8px; grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -107,7 +103,14 @@
     .toast.show{opacity:1; transform:none}
     .watermark{opacity:.6; font-size:12px; text-align:center; margin:14px 0 0}
 
-    /* ===== Modal (Welcome) ===== */
+    .download-cta{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; margin-top:12px; padding:0 12px}
+    .download-cta a, .download-cta button{
+      display:inline-flex; gap:10px; align-items:center; text-decoration:none; color:#03131f;
+      background:linear-gradient(90deg,#bef264,#7dd3fc); padding:14px 18px; border-radius:12px; font-weight:800; border:1px solid #bae6fd; cursor:pointer
+    }
+    .finish{background:linear-gradient(90deg,#fef08a,#93c5fd)}
+
+    /* Modal (Welcome) */
     .modal{position:fixed; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.3)); display:flex; align-items:center; justify-content:center; z-index:9999}
     .modal-card{
       width:min(92vw, 720px); background:#ffffff; border:2px solid #93c5fd; border-radius:18px; 
@@ -117,21 +120,21 @@
     .modal h3{margin:0 0 8px 0; font-size:clamp(20px, 2.6vw, 26px); color:#0b1a2b}
     .modal .count{font-weight:900; color:#0b1a2b}
 
-    /* ===== Success CTA ===== */
-    .download-cta{display:flex; justify-content:center; align-items:center; gap:10px; margin-top:10px; padding:0 12px}
-    .download-cta a{display:inline-flex; gap:10px; align-items:center; text-decoration:none; color:#03131f;
-      background:linear-gradient(90deg,#bef264,#7dd3fc); padding:14px 18px; border-radius:12px; font-weight:800; width:100%; max-width:320px; justify-content:center}
+    /* Confirm modal (pregled) */
+    .cmodal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:9998}
+    .cwrap{width:min(96vw, 920px); max-height:90vh; overflow:auto; background:#fff; border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.25); padding:16px}
+    .cwrap h3{margin:0 0 8px 0}
+    .review-grid{display:grid; grid-template-columns:220px 1fr; gap:8px 20px}
+    @media (max-width:700px){ .review-grid{grid-template-columns:1fr} .review-grid .tt{margin-top:8px} }
+    .tt{font-weight:700; color:#0b1a2b}
+    .review-actions{display:flex; gap:10px; justify-content:flex-end; margin-top:12px}
+    .review-actions .btn{border:1px solid #bae6fd}
 
-    /* ===== Mobile Tweaks ===== */
+    /* Mobile tweaks */
     @media (max-width:560px){
-      .wrap{gap:8px}
-      .brand{display:none}
-      .badges{display:none}
       .controls{flex-direction:column}
       .btn{width:100%}
-      .head{grid-template-columns:1fr}
       .title{font-size:22px}
-      .sub{font-size:13px}
     }
   </style>
 </head>
@@ -139,25 +142,52 @@
   <!-- Dinamična pozadina po koracima -->
   <div class="hero-bg" id="hero"></div>
 
-  <!-- Modal: Dobrodošli (auto-close 7s) -->
+  <!-- Modal: Dobrodošli (dugme postaje aktivno nakon 7s, ne zatvara se samo) -->
   <div class="modal" id="welcomeModal" aria-modal="true" role="dialog">
     <div class="modal-card">
-      <h3>Dobrodošli na <strong>Centrotours B2B Workshop 2025</strong></h3>
-      <p class="meta">📍 Swissotel Sarajevo • <strong>14. novembar 2025</strong> • Prijave do <strong>6. novembra 2025</strong></p>
-      <p class="meta">Najveći turistički B2B event u BiH – 100+ agencija • 30+ turskih hotela. Turizam nas spaja 💙</p>
-      <p class="meta">Ovaj prozor će se automatski zatvoriti za <span class="count" id="countdown">7</span>s.</p>
+      <div style="display:flex; gap:12px; align-items:center">
+        <img src="logo.png" alt="Centrotours" class="logo" />
+        <div class="brand-soft">Centrotours • B2B Workshop</div>
+      </div>
+      <h3 style="margin-top:8px">Dobrodošli na Centrotours B2B Workshop 2025</h3>
+      <div class="badgeRow" style="margin:10px 0 6px 0">
+        <span class="pbadge">📍 <em>Swissotel Sarajevo</em></span>
+        <span class="pbadge">🗓️ <em>14. nov 2025</em></span>
+        <span class="pbadge">⏰ <em>10:00–18:00</em></span>
+        <span class="pbadge">🕒 Prijave do: <em>6. nov 2025</em></span>
+      </div>
+      <p class="meta" style="margin:6px 0 0 0">
+        Najveći turistički B2B event u BiH – 100+ agencija • 30+ turskih hotela.  
+        Poziv je upućen odabranim partnerima – ispunite prijavu kako bismo vam potvrdili termine sastanaka.
+      </p>
+      <p class="meta" style="margin:6px 0 10px 0">Dugme će biti aktivno za <span class="count" id="countdown">7</span>s.</p>
       <button class="btn primary" id="closeWelcome" disabled>Zatvori</button>
+    </div>
+  </div>
+
+  <!-- Confirm (Pregled) Modal -->
+  <div class="cmodal" id="confirmModal">
+    <div class="cwrap">
+      <h3>Pregled unesenih podataka</h3>
+      <div id="reviewBody" class="review-grid"></div>
+      <div class="review-actions">
+        <button class="btn ghost" id="editBtn">✏️ Uredi</button>
+        <button class="btn primary" id="confirmSendBtn">✅ Potvrdi i pošalji</button>
+      </div>
     </div>
   </div>
 
   <header class="sticky">
     <div class="wrap">
-      <img src="logo.png" alt="Centrotours" class="logo" />
-      <div class="brand">Centrotours • B2B Workshop</div>
-      <div class="badges">
-        <span class="badge">📍 <strong>Swissotel Sarajevo</strong></span>
-        <span class="badge">🗓️ <strong>14. nov 2025</strong> • ⏰ <strong>10:00–18:00</strong></span>
-        <span class="badge">🕒 Prijave do: <strong>6. nov 2025</strong></span>
+      <div class="headerRow">
+        <img src="logo.png" alt="Centrotours" class="logo" />
+        <div class="brand-soft">Centrotours • B2B Workshop</div>
+      </div>
+      <div class="badgeRow">
+        <span class="pbadge">📍 <em>Swissotel Sarajevo</em></span>
+        <span class="pbadge">🗓️ <em>14. nov 2025</em></span>
+        <span class="pbadge">⏰ <em>10:00–18:00</em></span>
+        <span class="pbadge">🕒 Prijave do: <em>6. nov 2025</em></span>
       </div>
     </div>
   </header>
@@ -165,61 +195,52 @@
   <main>
     <section class="card">
       <div class="head">
-        <div>
-          <h1 class="title">Prijava za Centrotours Summer Türkiye Workshop 2026</h1>
-          <div class="sub">Ispunite podatke – kontaktiraćemo vas radi potvrde termina sastanaka sa hotelima.</div>
-        </div>
-        <div class="badge">Turizam nas spaja 💙</div>
+        <h1 class="title">Prijava na Centrotours -Summer in Türkiye | Workshop 2026</h1>
+        <div class="subtitle">Poziv za odabrane partnere</div>
+        <div class="desc">Dobrodošli! Popunite podatke; naš tim će vas kontaktirati radi potvrde termina sastanaka sa hotelima.</div>
       </div>
 
       <div class="progress"><span id="bar"></span></div>
 
-      <!--
-        VAŽNO:
-        - Ovaj formular koristi imena polja koja Apps Script očekuje.
-        - scriptURL postavite na VAŠ Web App URL (sa /exec).
-      -->
       <form id="form" novalidate>
-        <!-- Hidden ID + honey pot -->
+        <!-- Skriveno ID + honeypot -->
         <input type="hidden" name="entry_id" id="entry_id" />
         <input type="text" name="company" id="hp" style="display:none" tabindex="-1" autocomplete="off" />
 
-        <!-- KORAK 1: Uvod -->
+        <!-- KORAK 1 -->
         <div class="step active" data-step="1">
-          <p class="meta">Dobrodošli! Pritisnite “Dalje” i pratite korake. Sva obavezna polja su označena zvjezdicom (*).</p>
+          <p class="meta">Sva polja su obavezna. Kliknite “Dalje” i pratite korake.</p>
         </div>
 
-        <!-- KORAK 2: Osnovni podaci o agenciji -->
+        <!-- KORAK 2: Osnovni podaci -->
         <div class="step" data-step="2">
           <div class="grid g-2">
             <div class="field"><input required name="nazivAgencije" placeholder="Naziv agencije *"/></div>
             <div class="field"><input required name="grad" placeholder="Grad / sjedište *"/></div>
-            <div class="field"><input name="web" placeholder="Web stranica (https://)"/></div>
+            <div class="field"><input required name="web" placeholder="Web stranica (https://) *"/></div>
             <div class="field"><input required type="number" min="1" name="brojZaposlenih" placeholder="Broj zaposlenih *"/></div>
             <div class="field"><input required type="number" min="1900" max="2100" name="godinaOsnivanja" placeholder="Godina osnivanja *"/></div>
           </div>
         </div>
 
-        <!-- KORAK 3: Kontakt osoba -->
+        <!-- KORAK 3: Kontakt -->
         <div class="step" data-step="3">
           <div class="grid g-2">
             <div class="field"><input required name="imePrezime" placeholder="Ime i prezime *"/></div>
             <div class="field"><input required name="pozicija" placeholder="Pozicija u agenciji *"/></div>
             <div class="field"><input required type="email" name="email" placeholder="E-mail *"/></div>
             <div class="field">
-              <!-- Telefon: samo cifre, 9–15 -> xxxxxxxxx -->
               <input required inputmode="numeric" pattern="^[0-9]{9,15}$" name="telefon" placeholder="Broj telefona / mobitel (samo cifre, 9–15) *" />
             </div>
           </div>
-          <!-- KOMENTAR: Ako želiš internacionalni format, dodaj zasebno polje za pozivni broj. -->
         </div>
 
-        <!-- KORAK 4: Poslovni profil agencije -->
+        <!-- KORAK 4: Poslovni profil -->
         <div class="step" data-step="4">
           <fieldset class="group">
             <legend>Glavna tržišta na kojima poslujete *</legend>
             <div class="checks">
-              <label><input type="checkbox" name="trzista" value="Bosna i Hercegovina"> Bosna i Hercegovina</label>
+              <label><input type="checkbox" name="trzista" value="Bosna i Hercegovina" required> Bosna i Hercegovina</label>
               <label><input type="checkbox" name="trzista" value="Hrvatska / Srbija / Crna Gora"> Hrvatska / Srbija / Crna Gora</label>
               <label><input type="checkbox" name="trzista" value="Zapadna Evropa"> Zapadna Evropa</label>
               <label><input type="checkbox" name="trzista" value="Bliski Istok"> Bliski Istok</label>
@@ -240,7 +261,7 @@
           <fieldset class="group" style="margin-top:12px">
             <legend>Najčešće destinacije koje nudite *</legend>
             <div class="checks">
-              <label><input type="checkbox" name="destinacije" value="Turska"> Turska</label>
+              <label><input type="checkbox" name="destinacije" value="Turska" required> Turska</label>
               <label><input type="checkbox" name="destinacije" value="Egipat"> Egipat</label>
               <label><input type="checkbox" name="destinacije" value="Tunis"> Tunis</label>
               <label><input type="checkbox" name="destinacije" value="Grčka"> Grčka</label>
@@ -250,13 +271,12 @@
           </fieldset>
         </div>
 
-        <!-- KORAK 5: Interes za sastanke (B2B dio) -->
+        <!-- KORAK 5: Interes (B2B) -->
         <div class="step" data-step="5">
           <fieldset class="group">
             <legend>Interes za sastanke (B2B dio) *</legend>
-            <p class="meta" style="margin-top:0">Označite tipove hotela sa kojima želite termin.</p>
             <div class="checks">
-              <label><input type="checkbox" name="sastanak" value="Porodični hoteli"> Porodični hoteli</label>
+              <label><input type="checkbox" name="sastanak" value="Porodični hoteli" required> Porodični hoteli</label>
               <label><input type="checkbox" name="sastanak" value="Adults Only hoteli"> Adults Only hoteli</label>
               <label><input type="checkbox" name="sastanak" value="Luksuzni resorti"> Luksuzni resorti</label>
               <label><input type="checkbox" name="sastanak" value="Hoteli sa velikim kapacitetima"> Veliki kapaciteti</label>
@@ -273,11 +293,11 @@
                 <label><input type="radio" name="engleski" value="Ne"> Ne</label>
               </div>
             </div>
-            <div class="field" style="grid-column:1/-1"><textarea name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi"></textarea></div>
+            <div class="field" style="grid-column:1/-1"><textarea required name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi *"></textarea></div>
           </div>
         </div>
 
-        <!-- KORAK 6: Logistika i potvrda učešća -->
+        <!-- KORAK 6: Logistika -->
         <div class="step" data-step="6">
           <div class="grid g-2">
             <div class="group">
@@ -295,7 +315,7 @@
               </div>
             </div>
             <div class="field" style="grid-column:1/-1">
-              <textarea name="parking" placeholder="Napomena za parking / dolazak"></textarea>
+              <textarea required name="parking" placeholder="Napomena za parking / dolazak *"></textarea>
             </div>
           </div>
         </div>
@@ -305,13 +325,12 @@
           <div class="group">
             <p class="meta">✅ Saglasan/na sam da Centrotours koristi navedene podatke u svrhu organizacije B2B radionice i daljnje poslovne komunikacije.</p>
             <label style="display:flex; gap:10px; align-items:center">
-              <input type="checkbox" required name="saglasnost" value="DA"> Potvrđujem saglasnost
+              <input type="checkbox" required name="saglasnost" value="DA"> Potvrđujem saglasnost *
             </label>
           </div>
           <div class="grid g-2" style="margin-top:12px">
             <div class="field"><input required name="potpis" placeholder="Potpis (ime i prezime) *"/></div>
           </div>
-          <!-- KOMENTAR: Po želji dodati e-potpis (canvas) i slati base64 PNG u polje 'signature_data'. -->
         </div>
 
         <div class="controls">
@@ -322,11 +341,11 @@
 
       <div class="success" id="success">
         <h2 style="margin:0 0 8px 0">🎉 Hvala vam na prijavi!</h2>
-        <p class="meta">Vaša agencija je uspješno registrovana. Kliknite ispod da otvorite stilizovanu potvrdu i sačuvate je kao PDF.</p>
+        <p class="meta">Vaša agencija je uspješno registrovana. Potvrdu možete otvoriti i sačuvati kao PDF.</p>
         <div class="download-cta">
           <a id="downloadLink" href="#" rel="noopener">📄 Preuzmi potvrdu (PDF)</a>
+          <button type="button" class="finish" id="finishBtn">✅ Završi prijavu</button>
         </div>
-        <p class="watermark">Ako izgubite tab sa potvrdom, ovaj link ostaje aktivan dok ne osvježite stranicu.</p>
         <p class="watermark">Vidimo se u Sarajevu! — Centrotours Team 💙</p>
       </div>
     </section>
@@ -336,7 +355,7 @@
 
   <div class="toast" id="toast">Greška pri slanju. Pokušajte ponovo.</div>
 
-  <!-- Dekorativni val na dnu -->
+  <!-- Dekorativni talas na dnu -->
   <svg style="position:fixed; left:0; right:0; bottom:-1px; z-index:-1; opacity:.35" width="100%" height="120" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0,80 C240,140 480,0 720,60 C960,120 1200,20 1440,70 L1440,120 L0,120 Z" fill="#c7f1ff"/>
   </svg>
@@ -360,7 +379,7 @@
   w._miniQR=gen})(window);
   </script>
 
-  <!-- Generisanje stilizovane potvrde kao HTML (tab + dugme Print) -->
+  <!-- Generisanje stilizovane potvrde -->
   <script>
   function buildConfirmationHTML(data, qrDataURL){
     const base = location.origin + location.pathname.replace(/[^/]+$/,'');
@@ -427,17 +446,21 @@
               <div>Skenerom očitajte QR ili posjetite URL:</div>
               <div style="word-break:break-all">${data.verifyURL}</div>
             </div>
-            <img class="qr" src="${qrDataURL}" alt="QR"/>
+            ${qrDataURL 
+              ? `<img class="qr" src="${qrDataURL}" alt="QR"/>`
+              : `<div class="qr" style="display:flex;align-items:center;justify-content:center;font-size:12px;color:#64748b;text-align:center">
+                   QR nije dostupan<br/>URL je naveden lijevo
+                 </div>`}
           </div>
         </div>
         <div class="foot">Generisano: ${new Date().toLocaleString()}</div>
       </div>
     </body></html>`;
-    return html; /* SIROVI HTML; u nastavku pravimo BLOB URL */
+    return html;
   }
   </script>
 
-  <!-- Blob URL helper (za stabilno otvaranje u novom tabu) -->
+  <!-- Blob URL helper -->
   <script>
     let confirmationBlobUrl = null;
     function buildConfirmationBlobURL(htmlString){
@@ -453,9 +476,10 @@
     }
   </script>
 
+  <!-- App script -->
   <script>
     /* ===== KONFIG ===== */
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwF3ROdGxoape9_utRtaRUqZKsh7a-nJYL3y9uzDqBpAxWRlgIAXSFSddWec4NZLXA/exec'; // <<< postavi vaš /exec URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwFmjapQ8YCztkKhcYkwuYt5ocGfKlieVd_PKOymw6bVqvsTVrCPowsxcgvqzKuRrE/exec'; // <<< postavi vaš /exec URL
     const bgByStep = {1:'destinacija-1.jpg',2:'destinacija-2.jpg',3:'destinacija-3.jpg',4:'hurgada.jpg',5:'destinacija-6.jpg',6:'destinacija-2.jpg',7:'destinacija-3.jpg'};
 
     /* ===== UI refs ===== */
@@ -469,10 +493,17 @@
     const success = document.getElementById('success');
     const entryHidden = document.getElementById('entry_id');
     const downloadLink = document.getElementById('downloadLink');
+    const finishBtn = document.getElementById('finishBtn');
+
+    // Confirm modal refs
+    const cModal = document.getElementById('confirmModal');
+    const reviewBody = document.getElementById('reviewBody');
+    const editBtn = document.getElementById('editBtn');
+    const confirmSendBtn = document.getElementById('confirmSendBtn');
 
     let current = 0;
 
-    /* ===== Welcome modal 7s ===== */
+    /* ===== Welcome modal (dugme aktivno nakon 7s) ===== */
     (function welcomeModalInit(){
       const modal = document.getElementById('welcomeModal');
       const btn   = document.getElementById('closeWelcome');
@@ -484,10 +515,6 @@
           clearInterval(tick);
           btn.disabled = false;
           btn.textContent = 'Zatvori';
-          setTimeout(()=>{ modal.style.display='none'; }, 400);
-          modal.addEventListener('click', e=>{
-            if(e.target === modal) modal.style.display='none';
-          }, { once:true });
         }
       }, 1000);
       btn.addEventListener('click', ()=>{ if(!btn.disabled) modal.style.display='none'; });
@@ -502,7 +529,7 @@
       steps.forEach((el,idx)=>el.classList.toggle('active', idx===i));
       bar.style.width = (((i+1)/steps.length)*100) + '%';
       prevBtn.disabled = (i===0);
-      nextBtn.textContent = (i===steps.length-1) ? 'Pošalji' : 'Dalje ⟶';
+      nextBtn.textContent = (i===steps.length-1) ? 'Pregled i slanje' : 'Dalje ⟶';
       setHero(i); window.scrollTo({top:0, behavior:'smooth'});
     }
     function showToast(msg){ toast.textContent = msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 3200); }
@@ -510,23 +537,41 @@
     function validateStep(){
       const active = steps[current];
       const inputs = active.querySelectorAll('input,select,textarea');
+
+      // Polja (required + pattern)
       for(const el of inputs){
-        if((el.type==='checkbox'||el.type==='radio')) continue;
-        if(el.hasAttribute('required') && !el.value.trim()){ el.reportValidity?.(); return false; }
+        if(el.type==='checkbox' || el.type==='radio') continue;
+        if(el.hasAttribute('required') && !el.value.trim()){
+          el.reportValidity?.(); return false;
+        }
         if(el.pattern){
           const re = new RegExp(el.pattern);
           if(!re.test(el.value.trim())){ el.reportValidity?.(); return false; }
         }
       }
-      if(active.querySelector('legend')?.textContent?.includes('Glavna tržišta')){
-        if(active.querySelectorAll('input[name="trzista"]:checked').length===0){ showToast('Odaberite barem jedno tržište.'); return false; }
+      // Checkbox grupe
+      const groupChecks = [
+        {sel:'legend', txt:'Glavna tržišta', name:'trzista'},
+        {sel:'legend', txt:'Najčešće destinacije', name:'destinacije'},
+        {sel:'legend', txt:'Interes za sastanke', name:'sastanak'}
+      ];
+      for(const g of groupChecks){
+        if(active.querySelector(g.sel)?.textContent?.includes(g.txt)){
+          if(active.querySelectorAll(`input[name="${g.name}"]:checked`).length===0){
+            showToast(`Odaberite barem jednu stavku u "${g.txt}".`);
+            return false;
+          }
+        }
       }
-      if(active.querySelector('legend')?.textContent?.includes('Najčešće destinacije')){
-        if(active.querySelectorAll('input[name="destinacije"]:checked').length===0){ showToast('Odaberite barem jednu destinaciju.'); return false; }
+      // Radio grupe
+      const radios = active.querySelectorAll('input[type="radio"][required]');
+      if(radios.length){
+        const name = radios[0].name;
+        if(!active.querySelector(`input[name="${name}"]:checked`)){
+          showToast('Odaberite jednu od ponuđenih opcija.'); return false;
+        }
       }
-      if(active.querySelector('legend')?.textContent?.includes('Interes za sastanke')){
-        if(active.querySelectorAll('input[name="sastanak"]:checked').length===0){ showToast('Odaberite barem jedan tip hotela.'); return false; }
-      }
+
       return true;
     }
 
@@ -537,7 +582,44 @@
         if(!validateStep()) return;
         current++; show(current); return;
       }
-      await handleSubmit(); // zadnji korak
+      // Zadnji korak -> otvori pregled
+      if(!validateStep()) return;
+      openReview();
+    });
+
+    function openReview(){
+      const data = gatherData();
+      // Render pregleda
+      const rows = [
+        ['Naziv agencije', data.nazivAgencije],
+        ['Grad / sjedište', data.grad],
+        ['Web', data.web],
+        ['Broj zaposlenih', data.brojZaposlenih],
+        ['Godina osnivanja', data.godinaOsnivanja],
+        ['Ime i prezime', data.imePrezime],
+        ['Pozicija', data.pozicija],
+        ['E-mail', data.email],
+        ['Telefon', data.telefon],
+        ['Tržišta', data.trzista],
+        ['Aranžmana godišnje', data.brojAranzmana],
+        ['Destinacije', data.destinacije],
+        ['Interes hotela', data.sastanak],
+        ['Broj osoba (B2B)', data.brojOsoba],
+        ['Engleski', data.engleski],
+        ['Napomene', data.napomene],
+        ['Networking Dinner', data.vecera],
+        ['Smještaj', data.smjestaj],
+        ['Parking / dolazak', data.parking],
+        ['Saglasnost', data.saglasnost ? 'DA' : 'NE'],
+        ['Potpis', data.potpis]
+      ];
+      reviewBody.innerHTML = rows.map(([k,v])=>`<div class="tt">${k}</div><div>${(v||'').toString().replace(/</g,'&lt;')}</div>`).join('');
+      cModal.style.display='flex';
+    }
+    editBtn.addEventListener('click', ()=>{ cModal.style.display='none'; });
+    confirmSendBtn.addEventListener('click', async ()=>{
+      cModal.style.display='none';
+      await handleSubmit();
     });
 
     function makeID(){
@@ -558,84 +640,89 @@
       return o;
     }
 
-    // Fallback metoda (ako blob URL ne prođe) — otvori tab i upiši HTML
     function openConfirmationFallback(html){
       const w = window.open("", "_blank", "noopener");
       if (!w) { alert("Dozvoli otvaranje pop-up prozora (novog taba)."); return; }
-      w.document.open();
-      w.document.write(html);
-      w.document.close();
+      w.document.open(); w.document.write(html); w.document.close();
     }
 
     async function handleSubmit(){
       // honeypot
       if((document.getElementById('hp').value||'').trim()){
-        showToast('Greška.');
-        return;
+        showToast('Greška.'); return;
       }
       // telefon: samo cifre 9–15
       const tel = (form.telefon?.value || '').trim();
       if(!/^[0-9]{9,15}$/.test(tel)){
-        showToast('Telefon: samo cifre, 9–15.');
-        form.telefon.focus();
-        return;
+        showToast('Telefon: samo cifre, 9–15.'); form.telefon.focus(); return;
       }
 
       nextBtn.disabled=true; nextBtn.textContent='Slanje…';
       try{
         const id = makeID(); entryHidden.value = id;
+
+        // PUNA verify adresa
         const verifyURL = `${scriptURL.replace(/\/exec.*/, '/exec')}?verify=${encodeURIComponent(id)}`;
 
+        // Sakupi podatke + pripremi FormData
         const data = gatherData(); data.entry_id = id; data.verifyURL = verifyURL;
 
-        // === SLANJE U SHEET ===
         const fd = new FormData(form);
+        fd.set('entry_id', id);
+        fd.set('verifyURL', verifyURL);
+
+        // SLANJE
         const res = await fetch(scriptURL, { method:'POST', body: fd });
         try{
           const j = await res.json();
           if(j && j.ok===false) throw new Error(j.error||'Greška servera');
         }catch(_){ /* endpoint možda ne vraća JSON – ignoriši */ }
 
-        // === QR ===
-        const qr = window._miniQR(verifyURL, 6);
+        // QR sa PUNIM verifyURL
+        let qrDataUrl = window._miniQR(verifyURL, 6);
+        if (!qrDataUrl) { qrDataUrl = null; }
 
-        // === SIROVI HTML -> BLOB URL (stabilno otvaranje na mobilnim i desktop) ===
-        const rawHTML = buildConfirmationHTML(data, qr);
+        // SIROVI HTML -> BLOB URL (stabilno otvaranje)
+        const rawHTML = buildConfirmationHTML(data, qrDataUrl);
         const blobUrl = buildConfirmationBlobURL(rawHTML);
 
         if (blobUrl) {
-          downloadLink.href = blobUrl;      
-          downloadLink.target = '_blank';   
+          downloadLink.href = blobUrl;
+          downloadLink.target = '_blank';
           downloadLink.rel = 'noopener';
-          downloadLink.onclick = null;      
+          downloadLink.onclick = null;
         } else {
-          // Fallback: direktno pisanje u novi tab
           downloadLink.href = '#';
           downloadLink.onclick = (e)=>{ e.preventDefault(); openConfirmationFallback(rawHTML); };
         }
 
-        // === UI final ===
+        // UI final
         form.style.display='none'; 
         success.classList.add('show');
 
       }catch(err){
         console.error(err); showToast('Nije poslano: ' + (err.message||err));
       }finally{
-        nextBtn.disabled=false; nextBtn.textContent='Pošalji';
+        nextBtn.disabled=false; nextBtn.textContent='Pregled i slanje';
       }
     }
+
+    // Završi prijavu (čisti stanje i vraća na početak)
+    finishBtn.addEventListener('click', ()=>{
+      try{
+        if(confirmationBlobUrl){ URL.revokeObjectURL(confirmationBlobUrl); confirmationBlobUrl=null; }
+      }catch(_){}
+      // “reset sesije”: očisti formu i vrati UI na početak
+      form.reset();
+      success.classList.remove('show');
+      form.style.display = '';
+      current = 0; show(current);
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
 
     // Init
     function init(){ setHero(0); show(0); }
     init();
   </script>
-
-  <!--
-    🔧 NAPOMENA ZA QR VERIFIKACIJU
-    -----------------------------
-    U Apps Scriptu:
-      - dodaj kolonu "Entry ID" i upiši id iz polja 'entry_id'
-      - u doGet(e) obradi ?verify=ID i vrati HTML sa VALIDNO/NEVAŽEĆE
-  -->
 </body>
 </html>
