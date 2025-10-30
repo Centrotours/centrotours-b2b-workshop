@@ -132,6 +132,7 @@
       .controls{flex-direction:column}
       .btn{width:100%}
       .title{font-size:22px}
+      .logo{height:28px} /* ⬅️ smanjen logo na mobitelima */
     }
   </style>
 </head>
@@ -146,7 +147,16 @@
         <img src="logo.png" alt="Centrotours" class="logo" />
         <div class="brand-soft">Centrotours • B2B Workshop</div>
       </div>
-      <h3 style="margin-top:8px">Dobrodošli na Centrotours B2B Workshop 2025</h3>
+      <h3 style="margin-top:8px">Prijava na Centrotours B2B Workshop 2025</h3>
+
+      <!-- ⬇️ Uvodni tekst ispod naslova -->
+      <p class="meta" style="margin:6px 0 8px 0; line-height:1.55">
+        Dobrodošli na prijavni obrazac za učešće na <em>Centrotours Ljeto u Turskoj 2026 | Radionici</em> — 
+        najvećem turističkom B2B događaju u Bosni i Hercegovini. Ovaj event okuplja više od 100 turističkih agenata
+        iz Bosne i Hercegovine i predstavnike 30 vodećih hotela iz Turske, koji će na prethodno zakazanim sastancima
+        imati priliku da predstave svoje ponude i započnu poslovne saradnje.
+      </p>
+
       <div class="badgeRow" style="margin:10px 0 6px 0">
         <span class="pbadge">📍 <em>Swissotel Sarajevo</em></span>
         <span class="pbadge">🗓️ <em>14. nov 2025</em></span>
@@ -232,18 +242,9 @@
           </div>
         </div>
 
-        <!-- KORAK 4: Poslovni profil -->
+        <!-- KORAK 4: Poslovni profil (izmijenjeno: uklonjena sekcija "Glavna tržišta") -->
         <div class="step" data-step="4">
-          <fieldset class="group">
-            <legend>Glavna tržišta na kojima poslujete *</legend>
-            <div class="checks">
-              <label><input type="checkbox" name="trzista" value="Bosna i Hercegovina" required> Bosna i Hercegovina</label>
-              <label><input type="checkbox" name="trzista" value="Hrvatska / Srbija / Crna Gora"> Hrvatska / Srbija / Crna Gora</label>
-              <label><input type="checkbox" name="trzista" value="Zapadna Evropa"> Zapadna Evropa</label>
-              <label><input type="checkbox" name="trzista" value="Bliski Istok"> Bliski Istok</label>
-              <label><input type="checkbox" name="trzista" value="Ostalo"> Ostalo</label>
-            </div>
-          </fieldset>
+          <!-- Uklonjena grupa: Glavna tržišta na kojima poslujete -->
 
           <fieldset class="group" style="margin-top:12px">
             <legend>Prosječan broj prodatih aranžmana godišnje *</legend>
@@ -261,8 +262,9 @@
               <label><input type="checkbox" name="destinacije" value="Turska" required> Turska</label>
               <label><input type="checkbox" name="destinacije" value="Egipat"> Egipat</label>
               <label><input type="checkbox" name="destinacije" value="Tunis"> Tunis</label>
-              <label><input type="checkbox" name="destinacije" value="Grčka"> Grčka</label>
-              <label><input type="checkbox" name="destinacije" value="Italija"> Italija</label>
+              <label><input type="checkbox" name="destinacije" value="Albanija"> Albanija</label>
+              <label><input type="checkbox" name="destinacije" value="Jadran"> Jadran</label>
+              <label><input type="checkbox" name="destinacije" value="Španija"> Španija</label>
               <label><input type="checkbox" name="destinacije" value="Ostalo"> Ostalo</label>
             </div>
           </fieldset>
@@ -270,28 +272,49 @@
 
         <!-- KORAK 5: Interes (B2B) -->
         <div class="step" data-step="5">
+
           <fieldset class="group">
             <legend>Interes za sastanke (B2B dio) *</legend>
-            <div class="checks">
+
+            <p style="font-size:15px; color:#44627d; margin:6px 0 12px;">
+              Tokom radionice će se organizovati unaprijed zakazani sastanci između predstavnika hotela u Turskoj i predstavnika turističkih agencija.  
+              <br>Radi optimalnijeg rasporeda, molimo Vas da označite Vaše interese ispod.
+            </p>
+
+            <p style="margin:0 0 6px; font-weight:700; color:#0b1a2b;">Interesuje nas sastanak sa:</p>
+
+            <div class="checks" style="grid-template-columns:1fr !important;">
               <label><input type="checkbox" name="sastanak" value="Porodični hoteli" required> Porodični hoteli</label>
               <label><input type="checkbox" name="sastanak" value="Adults Only hoteli"> Adults Only hoteli</label>
               <label><input type="checkbox" name="sastanak" value="Luksuzni resorti"> Luksuzni resorti</label>
-              <label><input type="checkbox" name="sastanak" value="Hoteli sa velikim kapacitetima"> Veliki kapaciteti</label>
-              <label><input type="checkbox" name="sastanak" value="Hoteli sa sportskim sadržajima"> Sportski sadržaji</label>
+              <label><input type="checkbox" name="sastanak" value="Hoteli sa velikim kapacitetima"> Hoteli sa velikim kapacitetima</label>
+              <label><input type="checkbox" name="sastanak" value="Hoteli sa sportskim sadržajima"> Hoteli sa sportskim sadržajima</label>
             </div>
           </fieldset>
 
           <div class="grid g-2" style="margin-top:12px">
-            <div class="field"><input required type="number" min="1" name="brojOsoba" placeholder="Broj osoba iz vaše agencije *"/></div>
+            <div class="field">
+              <input required type="number" min="1" name="brojOsoba" placeholder="Broj osoba iz vaše agencije koje će prisustvovati sastancima *" />
+            </div>
+
             <div class="group">
               <legend>Da li govorite engleski jezik? *</legend>
-              <div class="checks">
+              <div class="checks" style="grid-template-columns:1fr !important;">
                 <label><input type="radio" required name="engleski" value="Da"> Da</label>
                 <label><input type="radio" name="engleski" value="Ne"> Ne</label>
               </div>
             </div>
-            <div class="field" style="grid-column:1/-1"><textarea required name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi *"></textarea></div>
+
+            <div class="field" style="grid-column:1/-1">
+              <textarea required name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi *"></textarea>
+            </div>
           </div>
+
+          <!-- ⬇️ Dinamična imena učesnika u skladu s brojem osoba -->
+          <fieldset class="group" id="attendeeNamesGroup" style="margin-top:12px; display:none">
+            <legend>Imena osoba iz Vaše agencije koje će prisustvovati zakazanim B2B sastancima.</legend>
+            <div class="grid g-2" id="attendeeNames"></div>
+          </fieldset>
         </div>
 
         <!-- KORAK 6: Logistika -->
@@ -440,11 +463,11 @@
         <div class="sec">
           <h3 class="h">B2B profil & logistika</h3>
           <div class="grid">
-            <div class="tt">Tržišta</div><div>${data.trzista||''}</div>
             <div class="tt">Destinacije</div><div>${data.destinacije||''}</div>
             <div class="tt">Aranžmana godišnje</div><div>${data.brojAranzmana||''}</div>
             <div class="tt">Interes hotela</div><div>${data.sastanak||''}</div>
             <div class="tt">Broj osoba (B2B)</div><div>${data.brojOsoba||''}</div>
+            <div class="tt">Imena prisutnih (B2B)</div><div>${data.attendeeList||''}</div>
             <div class="tt">Engleski</div><div>${data.engleski||''}</div>
             <div class="tt">Networking Dinner</div><div>${data.vecera||''}</div>
             <div class="tt">Smještaj</div><div>${data.smjestaj||''}</div>
@@ -516,6 +539,10 @@
     const editBtn = document.getElementById('editBtn');
     const confirmSendBtn = document.getElementById('confirmSendBtn');
 
+    // Attendee names refs
+    const attendeeGroup = document.getElementById('attendeeNamesGroup');
+    const attendeeWrap  = document.getElementById('attendeeNames');
+
     let current = 0;
 
     /* ===== Welcome modal (dugme aktivno nakon 7s) ===== */
@@ -566,7 +593,7 @@
       }
       // Checkbox grupe
       const groupChecks = [
-        {sel:'legend', txt:'Glavna tržišta', name:'trzista'},
+        // uklonjeno: Tržišta
         {sel:'legend', txt:'Najčešće destinacije', name:'destinacije'},
         {sel:'legend', txt:'Interes za sastanke', name:'sastanak'}
       ];
@@ -587,6 +614,14 @@
         }
       }
 
+      // Dodatna provjera: ako postoji grupa sa imenima, sva moraju biti popunjena
+      if(active.contains(attendeeGroup) && attendeeGroup.style.display !== 'none'){
+        const nameInputs = attendeeWrap.querySelectorAll('input[name^="b2bOsoba_"]');
+        for(const inp of nameInputs){
+          if(!inp.value.trim()){ inp.reportValidity?.(); return false; }
+        }
+      }
+
       return true;
     }
 
@@ -602,6 +637,27 @@
       openReview();
     });
 
+    function buildAttendeeInputs(){
+      const n = parseInt(form.brojOsoba?.value || '0', 10);
+      attendeeWrap.innerHTML = '';
+      if(n > 0){
+        attendeeGroup.style.display = '';
+        const capped = Math.min(n, 20); // razumna gornja granica
+        for(let i=1;i<=capped;i++){
+          const div = document.createElement('div');
+          div.className = 'field';
+          const input = document.createElement('input');
+          input.name = `b2bOsoba_${i}`;
+          input.required = true;
+          input.placeholder = `Ime i prezime osobe #${i} *`;
+          div.appendChild(input);
+          attendeeWrap.appendChild(div);
+        }
+      }else{
+        attendeeGroup.style.display = 'none';
+      }
+    }
+
     function openReview(){
       const data = gatherData();
       const rows = [
@@ -614,11 +670,12 @@
         ['Pozicija', data.pozicija],
         ['E-mail', data.email],
         ['Telefon', data.telefon],
-        ['Tržišta', data.trzista],
+        // uklonjeno: Tržišta
         ['Aranžmana godišnje', data.brojAranzmana],
         ['Destinacije', data.destinacije],
         ['Interes hotela', data.sastanak],
         ['Broj osoba (B2B)', data.brojOsoba],
+        ['Imena prisutnih (B2B)', data.attendeeList],
         ['Engleski', data.engleski],
         ['Napomene', data.napomene],
         ['Networking Dinner', data.vecera],
@@ -648,9 +705,15 @@
         if(o[k]){ o[k] = Array.isArray(o[k]) ? o[k].concat(v) : [o[k], v]; }
         else o[k]=v;
       }
-      ['trzista','destinacije','sastanak'].forEach(k=>{
+      ['destinacije','sastanak'].forEach(k=>{
         if(Array.isArray(o[k])) o[k] = o[k].join(', ');
       });
+      // prikupi imena učesnika
+      const names = [];
+      for(const [k,v] of fd.entries()){
+        if(/^b2bOsoba_\d+$/.test(k) && String(v).trim()) names.push(String(v).trim());
+      }
+      o.attendeeList = names.join(', ');
       return o;
     }
 
@@ -739,41 +802,14 @@
       window.scrollTo({top:0, behavior:'smooth'});
     });
 
-    // Navigacija
-    prevBtn.addEventListener('click', ()=>{ if(current>0){ current--; show(current); }});
-    nextBtn.type='button';
+    // Navigacija (duplikat listenera uklonjen)
 
-    // Confirm modal flow
-    function openReview(){
-      const data = gatherData();
-      const rows = [
-        ['Naziv agencije', data.nazivAgencije],
-        ['Grad / sjedište', data.grad],
-        ['Web', data.web],
-        ['Broj zaposlenih', data.brojZaposlenih],
-        ['Godina osnivanja', data.godinaOsnivanja],
-        ['Ime i prezime', data.imePrezime],
-        ['Pozicija', data.pozicija],
-        ['E-mail', data.email],
-        ['Telefon', data.telefon],
-        ['Tržišta', data.trzista],
-        ['Aranžmana godišnje', data.brojAranzmana],
-        ['Destinacije', data.destinacije],
-        ['Interes hotela', data.sastanak],
-        ['Broj osoba (B2B)', data.brojOsoba],
-        ['Engleski', data.engleski],
-        ['Napomene', data.napomene],
-        ['Networking Dinner', data.vecera],
-        ['Smještaj', data.smjestaj],
-        ['Parking / dolazak', data.parking],
-        ['Saglasnost', data.saglasnost ? 'DA' : 'NE'],
-        ['Potpis', data.potpis]
-      ];
-      reviewBody.innerHTML = rows.map(([k,v])=>`<div class="tt">${k}</div><div>${(v||'').toString().replace(/</g,'&lt;')}</div>`).join('');
-      cModal.style.display='flex';
-    }
-    editBtn.addEventListener('click', ()=>{ cModal.style.display='none'; });
-    confirmSendBtn.addEventListener('click', async ()=>{ cModal.style.display='none'; await handleSubmit(); });
+    // Dinamičko kreiranje polja za imena po unosu broja osoba
+    form.addEventListener('input', (e)=>{
+      if(e.target && e.target.name === 'brojOsoba'){
+        buildAttendeeInputs();
+      }
+    });
 
     // Init
     function init(){ setHero(0); show(0); }
