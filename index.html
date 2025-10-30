@@ -407,10 +407,23 @@
       </div>
     </body></html>`;
     // data URL tako da je link ponovo-otvoriv
-    return 'data:text/html;charset=utf-8,' + encodeURIComponent(html);
+    return html; // vratimo sirovi HTML; tab ćemo puniti direktnim upisom
   }
   </script>
+  <script>
+    let confirmationHTML = ""; // globalno – čuvamo HTML potvrde
 
+    function openConfirmation(e){
+      if (e) e.preventDefault();
+      if (!confirmationHTML) return;
+      // Otvorimo novi tab i direktno upišemo HTML
+      const w = window.open("", "_blank", "noopener");
+      if (!w) { alert("Dozvoli otvaranje pop-up prozora (novog taba)."); return; }
+      w.document.open();
+      w.document.write(confirmationHTML);
+      w.document.close();
+    }
+  </script>
   <script>
     // ====== KONFIG ======
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxf_XqH8M_q5k0nWM4_bfBTnR_0lOJdIozmlcGlErGEffhNElOtYbjjny8W7tdRaqI/exec'; // <<< postavi vaš /exec URL
@@ -535,16 +548,18 @@
         // QR
         const qr = window._miniQR(verifyURL, 6);
 
-        // IZGRADI potvrdu kao DATA URL (otvara se kada korisnik klikne)
-        confirmationURL = buildConfirmationHTML(data, qr);
-        downloadLink.href = confirmationURL;
+        // Izgradi SIROVI HTML potvrde i sačuvaj globalno
+        confirmationHTML = buildConfirmationHTML(data, qr);
+
+        // Podesi CTA dugme: klik -> otvori tab i upiši HTML
+        downloadLink.removeAttribute('href');              // osiguraj da ne ide na #
+        downloadLink.setAttribute('href', '#');           // vizuelno je i dalje link
+        downloadLink.setAttribute('rel', 'noopener');     // sigurnost
+        downloadLink.onclick = openConfirmation;
 
         // UI final
-        form.style.display='none'; success.classList.add('show');
-      }catch(err){
-        console.error(err); showToast('Nije poslano: ' + (err.message||err));
-      }finally{
-        nextBtn.disabled=false; nextBtn.textContent='Pošalji';
+        form.style.display='none'; 
+        success.classList.add('show');
       }
     }
 
