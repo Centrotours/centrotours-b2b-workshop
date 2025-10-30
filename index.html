@@ -5,94 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prijava – Centrotours B2B Workshop 2025</title>
   <link rel="icon" href="favicon.ico" />
-  <meta name="theme-color" content="#0d47a1" />
+  <meta name="theme-color" content="#0ea5e9" />
   <style>
     :root{
-      --primary:#0d6efd; --primary-700:#0b5ed7; --accent:#00c2ff;
-      --bg:#0a1220; --glass:#101b31; --glass2:#0e172b; --text:#eef4ff; --muted:#a9bedb;
-      --ok:#2fbf71; --danger:#e03131; --radius:18px; --shadow:0 14px 40px rgba(0,0,0,.35);
-      --border:1px solid rgba(255,255,255,.14);
+      --primary:#0ea5e9;       /* light-sky */
+      --primary-700:#0284c7;
+      --accent:#22c55e;        /* lime/green */
+      --bg:#f3fbff;            /* very light */
+      --text:#0b1a2b; 
+      --muted:#44627d;
+      --radius:18px; 
+      --shadow:0 12px 40px rgba(2, 132, 199, .18);
+      --border:1px solid rgba(2, 132, 199, .18);
     }
     html,body{height:100%}
     body{
       margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 10% -10%, #1b3b6b 0%, transparent 70%),
-        radial-gradient(1100px 700px at 110% 10%, #0f2b53 0%, transparent 70%),
-        linear-gradient(180deg, #020617 0%, var(--bg) 100%);
+        radial-gradient(1400px 800px at 10% -20%, #e0f7ff 0%, transparent 80%),
+        radial-gradient(1400px 800px at 110% 10%, #d1f7ff 0%, transparent 80%),
+        linear-gradient(180deg, #c7f1ff 0%, #f3fbff 100%);
       background-attachment: fixed;
       overflow-x: hidden;
     }
-    .hero-bg{position:fixed; inset:0; background-position:center; background-size:cover; opacity:.3; z-index:-1; transition:background-image .6s ease}
+    .hero-bg{position:fixed; inset:0; background-position:center; background-size:cover; opacity:.22; z-index:-1; transition:background-image .6s ease}
+    .hero-bg::after{
+      content:""; position:absolute; inset:0;
+      background:
+        radial-gradient(500px 500px at 85% 10%, rgba(255,235,140,.55), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,0));
+      pointer-events:none;
+    }
     header.sticky{
-      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(12px);
-      background:linear-gradient(180deg, rgba(8,16,35,.9), rgba(8,16,35,.55));
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(130%) blur(10px);
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.75));
       border-bottom:var(--border);
     }
     .wrap{max-width:1120px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; gap:14px}
-    .logo{height:40px; filter:drop-shadow(0 6px 12px rgba(0,0,0,.4))}
+    .logo{height:40px; filter:drop-shadow(0 4px 10px rgba(2,132,199,.25))}
     .brand{font-weight:800; letter-spacing:.2px}
     .badges{margin-left:auto; display:flex; gap:8px; flex-wrap:wrap}
-    .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.05); color:#dff3ff; font-size:13px}
-    .badge strong{color:#fff}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(2,132,199,.2);
+      background:#ffffffbf; color:#0b1a2b; font-size:13px}
+    .badge strong{color:#0b1a2b}
     main{max-width:1120px; margin:28px auto; padding:0 16px 80px}
     .card{border:var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
-      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03))}
+      background:linear-gradient(180deg, #ffffffcc, #ffffff)}
     .sub{color:var(--muted); font-size:14px}
     .title{font-size:clamp(22px,3vw,32px); font-weight:800; margin:0}
     .head{display:grid; grid-template-columns:1fr auto; gap:16px; padding:22px; border-bottom:var(--border);
-      background:linear-gradient(180deg, rgba(9,18,41,.6), rgba(9,18,41,.3))}
-    .progress{--h:8px; height:var(--h); margin:16px 22px; background:#0a1426; border:var(--border); border-radius:999px; overflow:hidden}
+      background:linear-gradient(180deg, #ffffff, #f7fdff)}
+    .progress{--h:10px; height:var(--h); margin:16px 22px; background:#e8f6ff; border:var(--border); border-radius:999px; overflow:hidden}
     .progress>span{display:block; height:100%; width:0; background:linear-gradient(90deg, var(--accent), var(--primary)); transition:width .4s ease}
     form{padding:18px 22px 10px}
     .step{display:none; animation:fade .45s ease}
     .step.active{display:block}
-    @keyframes fade{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+    @keyframes fade{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
     .grid{display:grid; gap:14px}
     .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
     @media (max-width:860px){.g-2,.g-3{grid-template-columns:1fr}}
-    .field{position:relative}
     .field input,.field select,.field textarea{
-      width:100%; background:#0a1426; color:var(--text); border:1px solid rgba(255,255,255,.16);
+      width:100%; background:#ffffff; color:var(--text); border:1px solid rgba(2,132,199,.26);
       padding:14px 12px; border-radius:12px; outline:none; transition:border .2s, box-shadow .2s; font-size:16px
     }
-    .field input::placeholder,.field textarea::placeholder{color:#6f87a6}
+    .field input::placeholder,.field textarea::placeholder{color:#7aa8c4}
     .field textarea{min-height:110px; resize:vertical}
-    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent); box-shadow:0 0 0 4px rgba(0,194,255,.12)}
-    .group{border:1px dashed rgba(255,255,255,.2); padding:14px; border-radius:12px; background:rgba(255,255,255,.03)}
-    .group legend{font-weight:800; color:#dff3ff}
+    .field input:focus,.field select:focus,.field textarea:focus{
+      border-color:#0284c7; box-shadow:0 0 0 4px rgba(14,165,233,.18)
+    }
+    .group{border:1px dashed rgba(2,132,199,.35); padding:14px; border-radius:12px; background:#ffffff}
+    .group legend{font-weight:800; color:#0b1a2b}
     .checks{display:grid; gap:8px; grid-template-columns:repeat(2,minmax(0,1fr))}
     @media (max-width:860px){.checks{grid-template-columns:1fr}}
     .controls{display:flex; justify-content:space-between; gap:12px; padding:16px 22px 22px}
     .btn{appearance:none; border:none; border-radius:12px; padding:12px 18px; cursor:pointer; font-weight:800; letter-spacing:.2px; font-size:16px}
-    .btn.primary{color:#061020; background:linear-gradient(90deg, var(--accent), var(--primary))}
-    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.3)}
-    .btn[disabled]{opacity:.6; cursor:not-allowed}
+    .btn.primary{color:#03131f; background:linear-gradient(90deg, #a7f3d0, #7dd3fc)}
+    .btn.primary:hover{filter:saturate(110%)}
+    .btn.ghost{background:#ffffff; color:#0b1a2b; border:1px solid rgba(2,132,199,.35)}
+    .btn[disabled]{opacity:.65; cursor:not-allowed}
     .meta{color:var(--muted)}
     .success{display:none; text-align:center; padding:38px}
     .success.show{display:block; animation:pop .45s ease}
     @keyframes pop{from{opacity:0; transform:scale(.98)} to{opacity:1; transform:scale(1)}}
-    .toast{position:fixed; right:16px; bottom:16px; background:#0a1426; color:var(--text); border:var(--border); padding:12px 14px; border-radius:12px; box-shadow:var(--shadow);
+    .toast{position:fixed; right:16px; bottom:16px; background:#fff; color:#0b1a2b; border:1px solid rgba(2,132,199,.3); padding:12px 14px; border-radius:12px; box-shadow:var(--shadow);
       opacity:0; transform:translateY(8px); pointer-events:none; transition:all .3s}
     .toast.show{opacity:1; transform:none}
-    .watermark{opacity:.28; font-size:12px; text-align:center; margin-top:16px}
-    /* Modal dobrodošlice */
-    .modal{position:fixed; inset:0; background:rgba(2,6,17,.66); display:flex; align-items:center; justify-content:center; z-index:9999}
-    .modal-card{max-width:680px; margin:16px; background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border:var(--border); border-radius:16px; padding:20px 22px; box-shadow:var(--shadow)}
-    .modal h3{margin:0 0 8px 0; font-size:24px}
-    .modal .count{font-weight:800; color:#fff}
-    .qr-preview{display:flex; gap:20px; align-items:center; justify-content:center; margin-top:12px}
-    .verify-url{font-size:12px; word-break:break-all; color:#cfe4ff}
+    .watermark{opacity:.6; font-size:12px; text-align:center; margin-top:16px}
+    /* Modal – svjetliji, ljetni stil */
+    .modal{position:fixed; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.3)); display:flex; align-items:center; justify-content:center; z-index:9999}
+    .modal-card{
+      max-width:720px; margin:16px; background:#ffffff; border:2px solid #93c5fd; border-radius:18px; 
+      padding:20px 22px; box-shadow:0 20px 60px rgba(2,132,199,.25);
+      background-image: radial-gradient(600px 300px at 90% -10%, #fff1b1 0%, transparent 60%);
+    }
+    .modal h3{margin:0 0 10px 0; font-size:26px; color:#0b1a2b}
+    .modal .count{font-weight:900; color:#0b1a2b}
   </style>
 </head>
 <body>
   <!-- Dinamična pozadina po koracima -->
   <div class="hero-bg" id="hero"></div>
 
-  <!-- Modal: Dobrodošli s tajmerom 7s (ne može se zatvoriti prije) -->
+  <!-- Modal: Dobrodošli s tajmerom 7s (auto-close; ne može se ranije zatvoriti) -->
   <div class="modal" id="welcomeModal" aria-modal="true" role="dialog">
     <div class="modal-card">
       <h3>Dobrodošli na <strong>Centrotours B2B Workshop 2025</strong></h3>
@@ -137,7 +153,7 @@
         <input type="hidden" name="entry_id" id="entry_id" />
         <input type="text" name="company" id="hp" style="display:none" tabindex="-1" autocomplete="off" />
 
-        <!-- KORAK 1: Uvod (sa pozadinskom slikom) -->
+        <!-- KORAK 1: Uvod -->
         <div class="step active" data-step="1">
           <p class="meta">Dobrodošli! Pritisnite “Dalje” i pratite korake. Sva obavezna polja su označena zvjezdicom (*).</p>
         </div>
@@ -145,7 +161,7 @@
         <!-- KORAK 2: Osnovni podaci o agenciji -->
         <div class="step" data-step="2">
           <div class="grid g-2">
-            <div class="field"><input required name="nazivAgencije" placeholder="Naziv agencije *"/ ></div>
+            <div class="field"><input required name="nazivAgencije" placeholder="Naziv agencije *"/></div>
             <div class="field"><input required name="grad" placeholder="Grad / sjedište *"/></div>
             <div class="field"><input name="web" placeholder="Web stranica (https://)"/></div>
             <div class="field"><input required type="number" min="1" name="brojZaposlenih" placeholder="Broj zaposlenih *"/></div>
@@ -164,7 +180,7 @@
               <input required inputmode="numeric" pattern="^[0-9]{9,15}$" name="telefon" placeholder="Broj telefona / mobitel (samo cifre, 9–15) *" />
             </div>
           </div>
-          <!-- KOMENTAR: Ako želiš internacionalni format, dodaj separate polje za pozivni broj. -->
+          <!-- KOMENTAR: Ako želiš internacionalni format, dodaj zasebno polje za pozivni broj. -->
         </div>
 
         <!-- KORAK 4: Poslovni profil agencije -->
@@ -264,7 +280,7 @@
           <div class="grid g-2" style="margin-top:12px">
             <div class="field"><input required name="potpis" placeholder="Potpis (ime i prezime) *"/></div>
           </div>
-          <!-- KOMENTAR: Po želji ubaciti e-potpis (canvas) i slati PNG base64 u polje 'signature_data'. -->
+          <!-- KOMENTAR: Po želji dodati e-potpis (canvas) i slati base64 PNG u polje 'signature_data'. -->
         </div>
 
         <div class="controls">
@@ -285,81 +301,81 @@
 
   <div class="toast" id="toast">Greška pri slanju. Pokušajte ponovo.</div>
 
-  <!-- QR Code (qrcodejs) – inlined minified -->
+  <!-- Dekorativni val na dnu (summer vibez) -->
+  <svg style="position:fixed; left:0; right:0; bottom:-1px; z-index:-1; opacity:.35" width="100%" height="120" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,80 C240,140 480,0 720,60 C960,120 1200,20 1440,70 L1440,120 L0,120 Z" fill="#c7f1ff"/>
+  </svg>
+
+  <!-- Minimal QRCode generator (inline) -->
   <script>
-  /*! qrcode.js (minimal) */
-  !function(o){function t(o){this.mode=s,this.data=o}function e(o,t){this.typeNumber=o,this.errorCorrectLevel=t,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}var n=function(){for(var o=0,t=0,e=0,n=[],r=0;r<256;r++){var i=r; i&=128?(i=i<<1^285):(i<<=1);n[r]=i}return function(r){for(o=1,t=0,e=0; r>0; r>>=1){1&r&&(e^=o); o&=128?o=o<<1^285:o<<=1}return e}}();t.prototype={getLength:function(){return this.data.length},write:function(o){for(var t=0;t<this.data.length;t++)o.put(this.data.charCodeAt(t),8)}};var r={L:1,M:0,Q:3,H:2},s=4;
-  function i(o){for(var t=1;t<41;t++){var e=new e(t,r.M);if(e.addData(o),e.make(),e.moduleCount<=177)return e}return null}
-  e.prototype={addData:function(o){this.dataList.push(new t(o)),this.dataCache=null},isDark:function(o,t){if(null==this.modules[o][t])throw new Error(o+","+t);return this.modules[o][t]},getModuleCount:function(){return this.moduleCount},make:function(){this.moduleCount=21+4*(this.typeNumber-1),this.modules=new Array(this.moduleCount);for(var o=0;o<this.moduleCount;o++){this.modules[o]=new Array(this.moduleCount);for(var t=0;t<this.moduleCount;t++)this.modules[o][t]=null}
-  // super simplified: timing + finder only (not production-grade; ok for IDs/links)
-  for(var u=0;u<7;u++)for(var a=0;a<7;a++)this.modules[u][a]=[1,0,0,0,0,0,1][a]||[1,0,0,0,0,0,1][u]||u==0||a==0||u==6||a==6;
-  for(var c=this.moduleCount-7; c<this.moduleCount; c++)for(a=0;a<7;a++)this.modules[c][a]=u=([1,0,0,0,0,0,1][a]||[1,0,0,0,0,0,1][c-(this.moduleCount-7)]||a==0||c==this.moduleCount-1||a==6||c==this.moduleCount-7);
-  for(u=0;u<7;u++)for(a=this.moduleCount-7;a<this.moduleCount;a++)this.modules[u][a]=([1,0,0,0,0,0,1][a-(this.moduleCount-7)]||[1,0,0,0,0,0,1][u]||u==0||a==this.moduleCount-1||u==6||a==this.moduleCount-7);
-  for(var l=8;l<this.moduleCount-8;l++)this.modules[l][6]=this.modules[6][l]=l%2==0;
-  // data (very naive fill)
-  var d=(this.dataCache||(this.dataCache=function(o){for(var t=[],e=0;e<o.dataList.length;e++)t.push(o.dataList[e]);return t}(this))),f=[];for(e=0;e<d.length;e++)for(var h=0;h<d[e].getLength();h++)for(var p=7;p>=0;p--)f.push((d[e].data.charCodeAt(h)>>p)&1);
-  for(var g=this.moduleCount-1,m=this.moduleCount-1,v=0;g>0;g-=2){6==g&&g--;for(var y=0;y<this.moduleCount;y++){var b=m+(v? -y:y); if(null==this.modules[b][g])this.modules[b][g]=f.length?!!f.shift():!1; if(null==this.modules[b][g-1])this.modules[b][g-1]=f.length?!!f.shift():!1}v=!v}},createDataURL:function(o){var t=this.getModuleCount(),e=o/t,n=document.createElement("canvas");n.width=n.height=t*e;var r=n.getContext("2d");r.fillStyle="#fff",r.fillRect(0,0,n.width,n.height),r.fillStyle="#000";for(var s=0;s<t;s++)for(var i=0;i<t;i++)this.isDark(s,i)&&r.fillRect(i*e,s*e,e,e);return n.toDataURL("image/png")}};
-  function a(o,t){var e=i(o); return e?e.createDataURL(t||6):null} window._miniQR=a;
+  /*! ultra-min QR (naive) — dovoljno za link/ID */
+  (function(w){function D(d){this.d=d}D.prototype={getLength:function(){return this.d.length},write:function(b){for(var i=0;i<this.d.length;i++)b.put(this.d.charCodeAt(i),8)}};
+  function Q(t,l){this.typeNumber=t;this.errorCorrectLevel=l;this.modules=null;this.moduleCount=0;this.dataCache=null;this.dataList=[]}
+  var EC={M:0};Q.prototype={addData:function(d){this.dataList.push(new D(d));this.dataCache=null},isDark:function(r,c){return this.modules[r][c]},
+  getModuleCount:function(){return this.moduleCount},make:function(){this.moduleCount=21+4*(this.typeNumber-1);this.modules=Array(this.moduleCount).fill(0).map(()=>Array(this.moduleCount).fill(null));
+  // finder
+  function box(R,C){for(var r=0;r<7;r++)for(var c=0;c<7;c++)Q.this.modules[R+r][C+c]=(r==0||c==0||r==6||c==6||((r>=2&&r<=4)&&(c>=2&&c<=4)))}Q.this=this;
+  box(0,0);box(0,this.moduleCount-7);box(this.moduleCount-7,0);
+  for(var i=8;i<this.moduleCount-8;i++)this.modules[i][6]=this.modules[6][i]=i%2==0;
+  // data fill (naive)
+  var data=[];this.dataList.forEach(d=>{for(var i=0;i<d.getLength();i++)for(var b=7;b>=0;b--)data.push((d.d.charCodeAt(i)>>b)&1)});
+  for(var col=this.moduleCount-1,dir=-1;col>0;col-=2){if(col==6)col--;for(var r=0;r<this.moduleCount;r++){var rr=dir>0?this.moduleCount-1-r:r;
+    for(var cc=0;cc<2;cc++)if(this.modules[rr][col-cc]===null)this.modules[rr][col-cc]=data.length?!!data.shift():false}dir*=-1}},
+  toDataURL:function(scale){scale=scale||6;var n=this.getModuleCount(),cv=document.createElement('canvas');cv.width=cv.height=n*scale;var x=cv.getContext('2d');
+  x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);x.fillStyle='#000';for(var r=0;r<n;r++)for(var c=0;c<n;c++)this.isDark(r,c)&&x.fillRect(c*scale,r*scale,scale,scale);return cv.toDataURL('image/png')}}
+  function gen(v){for(var t=1;t<=10;t++){var q=new Q(t,EC.M);q.addData(v);q.make();if(q.getModuleCount()<=177)return q.toDataURL(6)}return null}
+  w._miniQR=gen})(window);
   </script>
 
-  <!-- jsPDF (tiny build for text+image) – inlined from CDN light build conceptually -->
+  <!-- PDF generator (print-to-PDF kroz novi window) -->
   <script>
-  // minimal jsPDF-like generator using browser print-to-pdf fallback if unavailable
   async function generatePDF(data, qrDataURL){
-    // Try using the browser's print-to-PDF with a new window
-    // and an inline simple A4 layout (works reliably, zero deps).
     const id = data.entry_id;
-    const html = `
-      <html><head><meta charset="utf-8"><title>Potvrda ${id}</title>
-      <style>
-        body{font-family:Arial,Helvetica,sans-serif; margin:40px; color:#111}
-        h1{margin:0 0 10px 0; font-size:22px}
-        .muted{color:#555}
-        .grid{display:grid; grid-template-columns:180px 1fr; gap:6px 18px}
-        .box{border:1px solid #ddd; padding:14px; border-radius:8px; margin-top:14px}
-        img.logo{height:36px}
-        .row{display:flex; justify-content:space-between; align-items:center}
-        .qr{width:120px; height:120px; border:1px solid #eee; padding:6px}
-        .foot{font-size:12px; color:#666; margin-top:14px}
-        .tt{font-weight:bold}
-      </style></head>
-      <body>
-        <div class="row">
-          <div><img class="logo" src="${location.origin+location.pathname.replace(/[^/]+$/,'')}logo.png" alt="Centrotours"/></div>
-          <div><strong>Centrotours B2B Workshop 2025</strong><div class="muted">Swissotel Sarajevo · 14. nov 2025</div></div>
-        </div>
-        <h1>Potvrda prijave • ID: ${id}</h1>
-        <div class="box">
-          <div class="grid">
-            <div class="tt">Naziv agencije</div><div>${data.nazivAgencije||''}</div>
-            <div class="tt">Grad / sjedište</div><div>${data.grad||''}</div>
-            <div class="tt">Web</div><div>${data.web||''}</div>
-            <div class="tt">Broj zaposlenih</div><div>${data.brojZaposlenih||''}</div>
-            <div class="tt">Godina osnivanja</div><div>${data.godinaOsnivanja||''}</div>
-            <div class="tt">Kontakt</div><div>${data.imePrezime||''} — ${data.pozicija||''}</div>
-            <div class="tt">E-mail</div><div>${data.email||''}</div>
-            <div class="tt">Telefon</div><div>${data.telefon||''}</div>
-            <div class="tt">Tržišta</div><div>${data.trzista||''}</div>
-            <div class="tt">Aranžmana godišnje</div><div>${data.brojAranzmana||''}</div>
-            <div class="tt">Destinacije</div><div>${data.destinacije||''}</div>
-            <div class="tt">Interes hotela</div><div>${data.sastanak||''}</div>
-            <div class="tt">Broj osoba (B2B)</div><div>${data.brojOsoba||''}</div>
-            <div class="tt">Engleski</div><div>${data.engleski||''}</div>
-            <div class="tt">Napomene</div><div>${(data.napomene||'').replace(/</g,'&lt;')}</div>
-            <div class="tt">Networking Dinner</div><div>${data.vecera||''}</div>
-            <div class="tt">Smještaj</div><div>${data.smjestaj||''}</div>
-            <div class="tt">Parking/dolazak</div><div>${(data.parking||'').replace(/</g,'&lt;')}</div>
-            <div class="tt">Saglasnost</div><div>${data.saglasnost?'DA':'NE'}</div>
-            <div class="tt">Potpis</div><div>${data.potpis||''}</div>
-          </div>
-        </div>
-        <div class="row" style="margin-top:14px">
-          <div class="foot">Verifikacija: skenirajte QR ili posjetite <br>${data.verifyURL}</div>
-          <img class="qr" src="${qrDataURL}" alt="QR" />
-        </div>
-        <div class="foot">Generisano: ${new Date().toLocaleString()}</div>
-        <script>window.onload=()=>{window.print(); setTimeout(()=>window.close(),400);};</script>
-      </body></html>`;
+    const base = location.origin + location.pathname.replace(/[^/]+$/,'');
+    const html = ''
+    + '<html><head><meta charset="utf-8"><title>Potvrda '+id+'</title>'
+    + '<style>'
+    + 'body{font-family:Arial,Helvetica,sans-serif; margin:40px; color:#111}'
+    + 'h1{margin:0 0 10px 0; font-size:22px}'
+    + '.muted{color:#555}'
+    + '.grid{display:grid; grid-template-columns:180px 1fr; gap:6px 18px}'
+    + '.box{border:1px solid #ddd; padding:14px; border-radius:8px; margin-top:14px}'
+    + 'img.logo{height:36px}'
+    + '.row{display:flex; justify-content:space-between; align-items:center}'
+    + '.qr{width:120px; height:120px; border:1px solid #eee; padding:6px}'
+    + '.foot{font-size:12px; color:#666; margin-top:14px}'
+    + '.tt{font-weight:bold}'
+    + '</style></head><body>'
+    + '<div class="row"><div><img class="logo" src="'+base+'logo.png" alt="Centrotours"/></div>'
+    + '<div><strong>Centrotours B2B Workshop 2025</strong><div class="muted">Swissotel Sarajevo · 14. nov 2025</div></div></div>'
+    + '<h1>Potvrda prijave • ID: '+id+'</h1>'
+    + '<div class="box"><div class="grid">'
+    + '<div class="tt">Naziv agencije</div><div>'+ (data.nazivAgencije||'') +'</div>'
+    + '<div class="tt">Grad / sjedište</div><div>'+ (data.grad||'') +'</div>'
+    + '<div class="tt">Web</div><div>'+ (data.web||'') +'</div>'
+    + '<div class="tt">Broj zaposlenih</div><div>'+ (data.brojZaposlenih||'') +'</div>'
+    + '<div class="tt">Godina osnivanja</div><div>'+ (data.godinaOsnivanja||'') +'</div>'
+    + '<div class="tt">Kontakt</div><div>'+ (data.imePrezime||'') +' — '+ (data.pozicija||'') +'</div>'
+    + '<div class="tt">E-mail</div><div>'+ (data.email||'') +'</div>'
+    + '<div class="tt">Telefon</div><div>'+ (data.telefon||'') +'</div>'
+    + '<div class="tt">Tržišta</div><div>'+ (data.trzista||'') +'</div>'
+    + '<div class="tt">Aranžmana godišnje</div><div>'+ (data.brojAranzmana||'') +'</div>'
+    + '<div class="tt">Destinacije</div><div>'+ (data.destinacije||'') +'</div>'
+    + '<div class="tt">Interes hotela</div><div>'+ (data.sastanak||'') +'</div>'
+    + '<div class="tt">Broj osoba (B2B)</div><div>'+ (data.brojOsoba||'') +'</div>'
+    + '<div class="tt">Engleski</div><div>'+ (data.engleski||'') +'</div>'
+    + '<div class="tt">Napomene</div><div>'+ String(data.napomene||'').replace(/</g,'&lt;') +'</div>'
+    + '<div class="tt">Networking Dinner</div><div>'+ (data.vecera||'') +'</div>'
+    + '<div class="tt">Smještaj</div><div>'+ (data.smjestaj||'') +'</div>'
+    + '<div class="tt">Parking/dolazak</div><div>'+ String(data.parking||'').replace(/</g,'&lt;') +'</div>'
+    + '<div class="tt">Saglasnost</div><div>'+ (data.saglasnost?'DA':'NE') +'</div>'
+    + '<div class="tt">Potpis</div><div>'+ (data.potpis||'') +'</div>'
+    + '</div></div>'
+    + '<div class="row" style="margin-top:14px"><div class="foot">Verifikacija: skenirajte QR ili posjetite <br>'+data.verifyURL+'</div>'
+    + '<img class="qr" src="'+qrDataURL+'" alt="QR" /></div>'
+    + '<div class="foot">Generisano: '+ new Date().toLocaleString() +'</div>'
+    + '<scr'+'ipt>window.onload=function(){window.print(); setTimeout(function(){window.close()},400);};</scr'+'ipt>'
+    + '</body></html>';
     const w = window.open('', '_blank');
     w.document.open(); w.document.write(html); w.document.close();
   }
@@ -383,22 +399,30 @@
 
     let current = 0;
 
-    // Modal dobrodošlice: 7s timer
+    // Modal dobrodošlice: 7s — auto-close + tek nakon 7s dozvoli klik
     (function welcomeModalInit(){
-      const m = document.getElementById('welcomeModal');
-      const btn = document.getElementById('closeWelcome');
-      const c = document.getElementById('countdown');
+      const modal = document.getElementById('welcomeModal');
+      const btn   = document.getElementById('closeWelcome');
+      const ctn   = document.getElementById('countdown');
       let s = 7;
       const tick = setInterval(()=>{
-        s--; c.textContent = s;
-        if(s<=0){ clearInterval(tick); btn.disabled=false; btn.textContent='Zatvori'; }
-      },1000);
-      btn.addEventListener('click', ()=>{ if(!btn.disabled) m.style.display='none'; });
+        s--; ctn.textContent = s;
+        if(s<=0){
+          clearInterval(tick);
+          btn.disabled = false;
+          btn.textContent = 'Zatvori';
+          setTimeout(()=>{ modal.style.display='none'; }, 400);
+          modal.addEventListener('click', e=>{
+            if(e.target === modal) modal.style.display='none';
+          }, { once:true });
+        }
+      }, 1000);
+      btn.addEventListener('click', ()=>{ if(!btn.disabled) modal.style.display='none'; });
     })();
 
     function setHero(stepIndex){
       const n = stepIndex + 1;
-      hero.style.backgroundImage = `linear-gradient(rgba(2,6,23,.4),rgba(2,6,23,.6)), url('${bgByStep[n] || bgByStep[1]}')`;
+      hero.style.backgroundImage = `linear-gradient(rgba(255,255,255,.0),rgba(255,255,255,.0)), url('${bgByStep[n] || bgByStep[1]}')`;
     }
     function show(i){
       steps.forEach((el,idx)=>el.classList.toggle('active', idx===i));
@@ -456,7 +480,7 @@
         if(o[k]){ o[k] = Array.isArray(o[k]) ? o[k].concat(v) : [o[k], v]; }
         else o[k]=v;
       }
-      // join checkbox arrays kao string (lakše za PDF)
+      // join checkbox arrays kao string (za PDF)
       ['trzista','destinacije','sastanak'].forEach(k=>{
         if(Array.isArray(o[k])) o[k] = o[k].join(', ');
       });
@@ -467,7 +491,7 @@
       // honeypot
       if((document.getElementById('hp').value||'').trim()){ showToast('Greška.'); return; }
 
-      // enforce telefon pattern i bez space
+      // enforce telefon pattern
       const tel = form.telefon.value.trim();
       if(!/^[0-9]{9,15}$/.test(tel)){ showToast('Telefon: samo cifre, 9–15.'); form.telefon.focus(); return; }
 
@@ -477,20 +501,18 @@
         const id = makeID(); entryHidden.value = id;
 
         // verifikacijski URL (vidi napomenu ispod o Apps Scriptu)
-        const verifyURL = `${scriptURL.replace(/\\/exec.*/,'/exec')}?verify=${encodeURIComponent(id)}`;
+        const verifyURL = `${scriptURL.replace(/\\\/exec.*/, '/exec')}?verify=${encodeURIComponent(id)}`;
 
         // Skupi podatke
         const data = gatherData(); data.entry_id = id; data.verifyURL = verifyURL;
 
         // === SLANJE U SHEET ===
         const fd = new FormData(form);
-        // KOMENTAR: Ako u Apps Script dodate spremanje 'entry_id', moći ćete verifikovati prijavu preko ?verify=ID.
         const res = await fetch(scriptURL, { method:'POST', body: fd });
-        // pokušaj pročitati JSON odgovor (nije obavezno)
         try{
           const j = await res.json();
           if(j && j.ok===false) throw new Error(j.error||'Greška servera');
-        }catch(_){} // ok
+        }catch(_){}
 
         // === QR KOD ===
         const qr = window._miniQR(verifyURL, 6); // dataURL PNG
@@ -508,35 +530,19 @@
     }
 
     // Inicijalizacija
-    setHero(0); show(0);
+    function initHero(){ setHero(0); show(0); }
+    initHero();
   </script>
 
   <!--
     🔧 NAPOMENA ZA VERIFIKACIJU QR KODA
     -----------------------------------
     Da bi skeniranje QR koda zaista "potvrdilo" prijavu, u Apps Script dodajte:
-      1) U 'doPost' spremite i polje 'entry_id' u Sheet (dodatna kolona).
-      2) U 'doGet(e)' obradite ?verify=ID:
-         - pretražite Sheet po toj koloni
-         - odgovorite JSON-om {ok:true, id:ID} ili HTML stranom "Prijava VALIDNA"
-    Primjer kostura:
-
-    function doGet(e){
-      if(e && e.parameter && e.parameter.verify){
-        const id = String(e.parameter.verify);
-        const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-        const sh = ss.getSheetByName(SHEET_NAME);
-        const values = sh.getDataRange().getValues(); // [ [Timestamp, ... , EntryID], ... ]
-        const idx = values[0].indexOf('Entry ID'); // dodajte zaglavlje u initSheet()
-        const found = values.some((row,i)=> i>0 && row[idx]===id);
-        const html = HtmlService.createHtmlOutput(found ? '<h3>✅ Prijava VALIDNA</h3>' : '<h3>❌ Prijava NIJE pronađena</h3>');
-        return html;
-      }
-      // default:
-      return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
-    }
-
-    U 'initSheet()' dodajte kolonu "Entry ID", a u 'doPost' dodajte getParam(e,'entry_id') u red upisa.
+      1) U 'initSheet()' kolonu "Entry ID" (npr. zadnja kolona).
+      2) U 'doPost(e)' spremite i getParam(e,'entry_id') u taj stupac.
+      3) U 'doGet(e)' obradite ?verify=ID:
+         - pretražite Sheet po koloni "Entry ID"
+         - odgovorite HTML-om "✅ Prijava VALIDNA" ili "❌ Prijava NIJE pronađena".
   -->
 </body>
 </html>
