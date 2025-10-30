@@ -295,11 +295,9 @@
 
       <div class="success" id="success">
         <h2 style="margin:0 0 8px 0">🎉 Hvala vam na prijavi!</h2>
-        <p class="meta">Vaša agencija je uspješno registrovana. Kliknite ispod da preuzmete stilizovanu potvrdu i sačuvate je kao PDF.</p>
+        <p class="meta">Vaša agencija je uspješno registrovana. Kliknite ispod da otvorite stilizovanu potvrdu i sačuvate je kao PDF.</p>
         <div class="download-cta">
-          <a id="downloadLink" href="#" target="_blank" rel="noopener">
-            📄 Preuzmi potvrdu (PDF)
-          </a>
+          <a id="downloadLink" href="#" rel="noopener">📄 Preuzmi potvrdu (PDF)</a>
         </div>
         <p class="watermark">Ako izgubite tab sa potvrdom, ovaj link ostaje aktivan dok ne osvježite stranicu.</p>
         <p class="watermark">Vidimo se u Sarajevu! — Centrotours Team 💙</p>
@@ -406,24 +404,10 @@
         <div class="foot">Generisano: ${new Date().toLocaleString()}</div>
       </div>
     </body></html>`;
-    // data URL tako da je link ponovo-otvoriv
-    return html; // vratimo sirovi HTML; tab ćemo puniti direktnim upisom
+    return html; /* vraćamo SIROVI HTML; otvaramo ga u novom tabu direktnim upisom */
   }
   </script>
-  <script>
-    let confirmationHTML = ""; // globalno – čuvamo HTML potvrde
 
-    function openConfirmation(e){
-      if (e) e.preventDefault();
-      if (!confirmationHTML) return;
-      // Otvorimo novi tab i direktno upišemo HTML
-      const w = window.open("", "_blank", "noopener");
-      if (!w) { alert("Dozvoli otvaranje pop-up prozora (novog taba)."); return; }
-      w.document.open();
-      w.document.write(confirmationHTML);
-      w.document.close();
-    }
-  </script>
   <script>
     // ====== KONFIG ======
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxf_XqH8M_q5k0nWM4_bfBTnR_0lOJdIozmlcGlErGEffhNElOtYbjjny8W7tdRaqI/exec'; // <<< postavi vaš /exec URL
@@ -442,7 +426,7 @@
     const downloadLink = document.getElementById('downloadLink');
 
     let current = 0;
-    let confirmationURL = '#'; // popunjavamo nakon slanja
+    let confirmationHTML = ""; // globalno – čuvamo SIROVI HTML potvrde
 
     // Modal 7s auto-close
     (function welcomeModalInit(){
@@ -525,43 +509,70 @@
       return o;
     }
 
+    // Otvaranje potvrde u novom tabu pisanjem sirovog HTML-a
+    function openConfirmation(e){
+      if (e) e.preventDefault();
+      if (!confirmationHTML) return;
+      const w = window.open("", "_blank", "noopener");
+      if (!w) { alert("Dozvoli otvaranje pop-up prozora (novog taba)."); return; }
+      w.document.open();
+      w.document.write(confirmationHTML);
+      w.document.close();
+    }
+
     async function handleSubmit(){
-      if((document.getElementById('hp').value||'').trim()){ showToast('Greška.'); return; }
+      // honeypot
+      if((document.getElementById('hp').value||'').trim()){
+        showToast('Greška.');
+        return;
+      }
+      // enforce telefon pattern (samo cifre 9–15)
       const tel = form.telefon.value.trim();
-      if(!/^[0-9]{9,15}$/.test(tel)){ showToast('Telefon: samo cifre, 9–15.'); form.telefon.focus(); return; }
+      if(!/^[0-9]{9,15}$/.test(tel)){
+        showToast('Telefon: samo cifre, 9–15.');
+        form.telefon.focus();
+        return;
+      }
 
       nextBtn.disabled=true; nextBtn.textContent='Slanje…';
       try{
         const id = makeID(); entryHidden.value = id;
-        const verifyURL = `${scriptURL.replace(/\\\/exec.*/, '/exec')}?verify=${encodeURIComponent(id)}`;
+        const verifyURL = `${scriptURL.replace(/\/exec.*/, '/exec')}?verify=${encodeURIComponent(id)}`;
 
         const data = gatherData(); data.entry_id = id; data.verifyURL = verifyURL;
 
-        // SLANJE U SHEET
+        // === SLANJE U SHEET ===
         const fd = new FormData(form);
         const res = await fetch(scriptURL, { method:'POST', body: fd });
         try{
           const j = await res.json();
           if(j && j.ok===false) throw new Error(j.error||'Greška servera');
-        }catch(_){}
+        }catch(_){ /* endpoint možda ne vraća JSON – ignoriši */ }
 
-        // QR
+        // === QR ===
         const qr = window._miniQR(verifyURL, 6);
 
-        // Izgradi SIROVI HTML potvrde i sačuvaj globalno
+        // === Izgradi SIROVI HTML potvrde i sačuvaj globalno ===
         confirmationHTML = buildConfirmationHTML(data, qr);
 
-        // Podesi CTA dugme: klik -> otvori tab i upiši HTML
-        downloadLink.removeAttribute('href');              // osiguraj da ne ide na #
-        downloadLink.setAttribute('href', '#');           // vizuelno je i dalje link
-        downloadLink.setAttribute('rel', 'noopener');     // sigurnost
+        // === Podesi CTA dugme: klik -> otvori tab i upiši HTML ===
+        downloadLink.removeAttribute('href');
+        downloadLink.setAttribute('href', '#');
+        downloadLink.setAttribute('rel', 'noopener');
         downloadLink.onclick = openConfirmation;
 
-        // UI final
+        // === UI final ===
         form.style.display='none'; 
         success.classList.add('show');
-      }
 
+      }catch(err){
+        console.error(err); showToast('Nije poslano: ' + (err.message||err));
+      }finally{
+        nextBtn.disabled=false; nextBtn.textContent='Pošalji';
+      }
+    }
+
+    // Init
     function init(){ setHero(0); show(0); }
     init();
   </script>
