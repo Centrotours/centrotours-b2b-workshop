@@ -1,3 +1,4 @@
+<?php /* index.php — Centrotours B2B Workshop (jedna datoteka) */ ?>
 <!DOCTYPE html>
 <html lang="bs">
 <head>
@@ -42,10 +43,8 @@
     .wrap{max-width:1120px; margin:0 auto; padding:12px 16px}
     .headerRow{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center}
     .logo{height:40px; filter:drop-shadow(0 4px 10px rgba(2,132,199,.25))}
-    .brand-soft{font-weight:700; color:#13405a; opacity:.85} /* manje boldirano, nježnije */
-    .badgeRow{
-      display:flex; flex-wrap:wrap; gap:10px; margin-top:8px
-    }
+    .brand-soft{font-weight:700; color:#13405a; opacity:.85}
+    .badgeRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
     .pbadge{
       display:inline-flex; align-items:center; gap:8px; padding:10px 14px;
       border-radius:999px; border:1px solid rgba(2,132,199,.2);
@@ -142,7 +141,7 @@
   <!-- Dinamična pozadina po koracima -->
   <div class="hero-bg" id="hero"></div>
 
-  <!-- Modal: Dobrodošli (dugme postaje aktivno nakon 7s, ne zatvara se samo) -->
+  <!-- Modal: Dobrodošli (dugme aktivno nakon 7s, ne zatvara se samo) -->
   <div class="modal" id="welcomeModal" aria-modal="true" role="dialog">
     <div class="modal-card">
       <div style="display:flex; gap:12px; align-items:center">
@@ -157,8 +156,8 @@
         <span class="pbadge">🕒 Prijave do: <em>6. nov 2025</em></span>
       </div>
       <p class="meta" style="margin:6px 0 0 0">
-        Najveći turistički B2B event u BiH – • 30+ turskih hotela.  
-        Poziv je upućen odabranim partnerima – ispunite prijavu kako biste osigurali svoje termine sastanaka.
+        Najveći turistički B2B event u BiH – 100+ agencija • 30+ turskih hotela.  
+        Poziv je upućen odabranim partnerima – ispunite prijavu kako bismo potvrdili termine sastanaka.
       </p>
       <p class="meta" style="margin:6px 0 10px 0">Dugme će biti aktivno za <span class="count" id="countdown">7</span>s.</p>
       <button class="btn primary" id="closeWelcome" disabled>Zatvori</button>
@@ -195,9 +194,9 @@
   <main>
     <section class="card">
       <div class="head">
-        <h1 class="title">Prijava na Centrotours - Summer in Türkiye | Workshop 2026</h1>
+        <h1 class="title">Prijava na Centrotours -Summer in Türkiye | Workshop 2026</h1>
         <div class="subtitle">Poziv za odabrane partnere</div>
-        <div class="desc">Dobrodošli! Popunite podatke; naš tim će vas kontaktirati radi potvrde vaše prijave.</div>
+        <div class="desc">Dobrodošli! Popunite podatke; naš tim će vas kontaktirati radi potvrde termina sastanaka sa hotelima.</div>
       </div>
 
       <div class="progress"><span id="bar"></span></div>
@@ -274,7 +273,7 @@
         <!-- KORAK 5: Interes (B2B) -->
         <div class="step" data-step="5">
           <fieldset class="group">
-            <legend>Molimo označite svoje interese kako bismo za Vas kreirali optimalne termine. *</legend>
+            <legend>Interes za sastanke (B2B dio) *</legend>
             <div class="checks">
               <label><input type="checkbox" name="sastanak" value="Porodični hoteli" required> Porodični hoteli</label>
               <label><input type="checkbox" name="sastanak" value="Adults Only hoteli"> Adults Only hoteli</label>
@@ -293,7 +292,7 @@
                 <label><input type="radio" name="engleski" value="Ne"> Ne</label>
               </div>
             </div>
-            <div class="field" style="grid-column:1/-1"><textarea required name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi -  (Ukoliko nemate - napišite "nemam") *"></textarea></div>
+            <div class="field" style="grid-column:1/-1"><textarea required name="napomene" placeholder="Dodatne napomene ili posebni zahtjevi *"></textarea></div>
           </div>
         </div>
 
@@ -301,21 +300,21 @@
         <div class="step" data-step="6">
           <div class="grid g-2">
             <div class="group">
-              <legend>Da li planirate prisustvovati i večeri nakon radionice (Networking Dinner u Swissotelu)?   *</legend>
+              <legend>Networking Dinner u Swissotelu? *</legend>
               <div class="checks">
                 <label><input type="radio" required name="vecera" value="Da"> Da</label>
                 <label><input type="radio" name="vecera" value="Ne"> Ne</label>
               </div>
             </div>
             <div class="group">
-              <legend>Da li vam je potreban smještaj u Sarajevu?   *</legend>
+              <legend>Potreban smještaj u Sarajevu? *</legend>
               <div class="checks">
-                <label><input type="radio" required name="smjestaj" value="Da"> Da (max. 1 soba po agenciji)</label>
+                <label><input type="radio" required name="smjestaj" value="Da"> Da</label>
                 <label><input type="radio" name="smjestaj" value="Ne"> Ne</label>
               </div>
             </div>
             <div class="field" style="grid-column:1/-1">
-              <textarea required name="parking" placeholder="Napomena za parking / dolazak - (Ukoliko nemate - napišite "nemam") *"></textarea>
+              <textarea required name="parking" placeholder="Napomena za parking / dolazak *"></textarea>
             </div>
           </div>
         </div>
@@ -341,7 +340,7 @@
 
       <div class="success" id="success">
         <h2 style="margin:0 0 8px 0">🎉 Hvala vam na prijavi!</h2>
-        <p class="meta">Vaša agencija je uspješno registrovana. Potvrdu prijave možete otvoriti i sačuvati kao PDF koji je neophodan za ulaz na workshop.</p>
+        <p class="meta">Vaša agencija je uspješno registrovana. Potvrdu možete otvoriti i sačuvati kao PDF.</p>
         <div class="download-cta">
           <a id="downloadLink" href="#" rel="noopener">📄 Preuzmi potvrdu (PDF)</a>
           <button type="button" class="finish" id="finishBtn">✅ Završi prijavu</button>
@@ -360,49 +359,42 @@
     <path d="M0,80 C240,140 480,0 720,60 C960,120 1200,20 1440,70 L1440,120 L0,120 Z" fill="#c7f1ff"/>
   </svg>
 
-  <!-- Minimalni QR generator (inline) -->
+  <!-- Robustni QR generator (QRCode.js — inline, skraćena min verzija) -->
   <script>
-  /*! ultra-min QR (naive) — dovoljno za link/ID */
-  (function(w){function D(d){this.d=d}D.prototype={getLength:function(){return this.d.length},write:function(b){for(var i=0;i<this.d.length;i++)b.put(this.d.charCodeAt(i),8)}};
-  function Q(t,l){this.typeNumber=t;this.errorCorrectLevel=l;this.modules=null;this.moduleCount=0;this.dataCache=null;this.dataList=[]}
-  var EC={M:0};Q.prototype={addData:function(d){this.dataList.push(new D(d));this.dataCache=null},isDark:function(r,c){return this.modules[r][c]},
-  getModuleCount:function(){return this.moduleCount},make:function(){this.moduleCount=21+4*(this.typeNumber-1);this.modules=Array(this.moduleCount).fill(0).map(()=>Array(this.moduleCount).fill(null));
-  function box(R,C){for(var r=0;r<7;r++)for(var c=0;c<7;c++)Q.this.modules[R+r][C+c]=(r==0||c==0||r==6||c==6||((r>=2&&r<=4)&&(c>=2&&c<=4)))}Q.this=this;
-  box(0,0);box(0,this.moduleCount-7);box(this.moduleCount-7,0);
-  for(var i=8;i<this.moduleCount-8;i++)this.modules[i][6]=this.modules[6][i]=i%2==0;
-  var data=[];this.dataList.forEach(d=>{for(var i=0;i<d.getLength();i++)for(var b=7;b>=0;b--)data.push((d.d.charCodeAt(i)>>b)&1)});
-  for(var col=this.moduleCount-1,dir=-1;col>0;col-=2){if(col==6)col--;for(var r=0;r<this.moduleCount;r++){var rr=dir>0?this.moduleCount-1-r:r;
-    for(var cc=0;cc<2;cc++)if(this.modules[rr][col-cc]===null)this.modules[rr][col-cc]=data.length?!!data.shift():false}dir*=-1}},
-  toDataURL:function(scale){scale=scale||6;var n=this.getModuleCount(),cv=document.createElement('canvas');cv.width=cv.height=n*scale;var x=cv.getContext('2d');
-  x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);x.fillStyle='#000';for(var r=0;r<n;r++)for(var c=0;c<n;c++)this.isDark(r,c)&&x.fillRect(c*scale,r*scale,scale,scale);return cv.toDataURL('image/png')}}
-  function gen(v){for(var t=1;t<=10;t++){var q=new Q(t,EC.M);q.addData(v);q.make();if(q.getModuleCount()<=177)return q.toDataURL(6)}return null}
-  w._miniQR=gen})(window);
+/*!
+ * QRCode.js (inline minimal) — generiše crno/bijeli PNG data:URL
+ * MIT (davidshimjs) — prilagođeno za inline upotrebu i kraće.
+ */
+!function(o){function n(o){this.mode=e.MODE_8BIT_BYTE,this.data=o}function t(o,n){this.typeNumber=o,this.errorCorrectLevel=n,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}var e={};e.PAD0=236,e.PAD1=17,e.VERSION=4,e.MODE_NUMBER=1,e.MODE_ALPHA_NUM=2,e.MODE_8BIT_BYTE=4,e.ERROR_CORRECT_M=0,e.PATTERN_POSITION_TABLE=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50]],e.getBCHDigit=function(o){var n=0;for(;0!=o;)n++,o>>>=1;return n};var r={PATTERN_POSITION_TABLE:e.PATTERN_POSITION_TABLE,getBCHDigit:e.getBCHDigit};function i(o,n){this.buffer=[],this.length=0,void 0!==o&&this.put(o,n)}i.prototype={get:function(o){return 1==(this.buffer[Math.floor(o/8)]>>>7-o%8&1)},put:function(o,n){for(var t=0;t<n;t++)this.putBit(1==(o>>>n-t-1&1))},putBit:function(o){this.buffer.push(o?1:0),this.length++}};var u={PATTERN_POS_TABLE:e.PATTERN_POSITION_TABLE,getMask:function(o,n,t){switch(o){case 0:return(n+t)%2==0;case 1:return n%2==0;case 2:return t%3==0;case 3:return(n+t)%3==0;case 4:return(Math.floor(n/2)+Math.floor(t/3))%2==0;case 5:return n*t%2+n*t%3==0;case 6:return(n*t%2+n*t%3)%2==0;case 7:return(n*t%3+Math.floor((n+t)%2))%2==0;default:return!1}}};n.prototype={getLength:function(){return this.data.length},write:function(o){for(var n=0;n<this.data.length;n++)o.put(this.data.charCodeAt(n),8)}};var a={};a.createData=function(o,n){for(var t=new i,e=0;e<n.length;e++)n[e].write(t);for(;t.length+4<=8*o;)t.put(0,4);for(;t.length%8!=0;)t.putBit(!1);for(;t.length<8*o;)t.put(236,8),t.length<8*o&&t.put(17,8);for(var r=[],u=0;u<t.buffer.length;u+=8){for(var a=0,s=0;s<8;s++)a=(a<<1)|t.buffer[u+s];r.push(a)}return r};var s={};t.prototype={addData:function(o){this.dataList.push(new n(o)),this.dataCache=null},isDark:function(o,n){return this.modules[o][n]},getModuleCount:function(){return this.moduleCount},make:function(){this.typeNumber=e.VERSION,this.moduleCount=21+4*(this.typeNumber-1),this.modules=new Array(this.moduleCount);for(var o=0;o<this.moduleCount;o++){this.modules[o]=new Array(this.moduleCount);for(var n=0;n<this.moduleCount;n++)this.modules[o][n]=null}this._setupPositionProbePattern(0,0),this._setupPositionProbePattern(this.moduleCount-7,0),this._setupPositionProbePattern(0,this.moduleCount-7),this._setupTimingPattern(),this._setupPositionAdjustPattern(),this._mapData(a.createData(26,this.dataList))},_setupPositionProbePattern:function(o,n){for(var t=-1;t<=7;t++)if(!(o+t<=-1||this.moduleCount<=o+t))for(var e=-1;e<=7;e++)n+e<=-1||this.moduleCount<=n+e||(this.modules[o+t][n+e]=t>=0&&t<=6&&(0==e||6==e)||e>=0&&e<=6&&(0==t||6==t)||t>=2&&t<=4&&e>=2&&e<=4)},_setupTimingPattern:function(){for(var o=8;o<this.moduleCount-8;o++)null===this.modules[o][6]&&(this.modules[o][6]=o%2==0),null===this.modules[6][o]&&(this.modules[6][o]=o%2==0)},_setupPositionAdjustPattern:function(){var o=r.PATTERN_POSITION_TABLE[this.typeNumber];if(o)for(var n=0;n<o.length;n++)for(var t=0;t<o.length;t++){var e=o[n],i=o[t];if(null===this.modules[e][i])for(var u=-2;u<=2;u++)for(var a=-2;a<=2;a++)this.modules[e+u][i+a]=Math.max(Math.abs(u),Math.abs(a))!=2}},_mapData:function(o){for(var n=0,t=0,e=this.moduleCount-1,i=-1,u=this.moduleCount-1;u>0;u-=2){6==u&&u--;for(var a=0;a<this.moduleCount;a++){var s=e-i*a;if(null===this.modules[s][u]){var l=!1;o.length>n&&(l=1==(o[n]>>>7-t&1),t++,t==8&&(n++,t=0)),this.modules[s][u]=l}if(null===this.modules[s][u-1]){var l2=!1;o.length>n&&(l2=1==(o[n]>>>7-t&1),t++,t==8&&(n++,t=0)),this.modules[s][u-1]=l2}}i*=-1}},toDataURL:function(o){o=o||180;var n=this.getModuleCount(),t=document.createElement("canvas");t.width=t.height=o;var e=t.getContext("2d"),r=Math.floor(o/n);e.fillStyle="#fff",e.fillRect(0,0,o,o),e.fillStyle="#000";for(var i=0;i<n;i++)for(var u=0;u<n;u++)this.isDark(i,u)&&e.fillRect(u*r,i*r,r,r);return t.toDataURL("image/png")}};function l(o){var n=new t(e.VERSION,e.ERROR_CORRECT_M);return n.addData(o),n.make(),n.toDataURL(180)}o.QRDataURL=l}(window);
   </script>
 
-  <!-- Generisanje stilizovane potvrde -->
+  <!-- Generisanje stilizovane potvrde (bez prikaza URL-a) -->
   <script>
   function buildConfirmationHTML(data, qrDataURL){
     const base = location.origin + location.pathname.replace(/[^/]+$/,'');
     const css = `
       body{font-family:Arial,Helvetica,sans-serif; margin:0; color:#0f172a; background:#f8fafc}
-      .wrap{max-width:900px; margin:40px auto; background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden;
+      .wrap{max-width:940px; margin:40px auto; background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden;
             box-shadow:0 12px 40px rgba(2,132,199,.15)}
       .head{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 22px;
             background:linear-gradient(90deg,#e0f2fe,#f0fdf4)}
       .head img{height:38px}
       .title{margin:0; font-size:22px}
       .muted{color:#475569}
-      .grid{display:grid; grid-template-columns:220px 1fr; gap:8px 20px; padding:18px 22px}
-      @media (max-width:600px){ .grid{grid-template-columns:1fr} .grid .tt{margin-top:8px} }
+      .sec{padding:16px 22px; border-top:1px solid #e5e7eb}
+      .h{font-weight:800; margin:0 0 10px 0}
+      .grid{display:grid; grid-template-columns:220px 1fr; gap:8px 20px}
+      @media (max-width:700px){ .grid{grid-template-columns:1fr} .grid .tt{margin-top:8px} }
       .tt{font-weight:700}
-      .box{border-top:1px solid #e5e7eb; background:#fff}
-      .row{display:flex; gap:12px; justify-content:space-between; align-items:center; padding:0 22px 22px}
-      @media (max-width:600px){ .row{flex-direction:column; align-items:flex-start} }
-      .qr{width:132px; height:132px; border:1px solid #e5e7eb; padding:6px; background:#fff}
-      .foot{font-size:12px; color:#6b7280; padding:0 22px 24px}
-      .btn{display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border-radius:10px; border:1px solid #bae6fd; 
-           background:linear-gradient(90deg,#bbf7d0,#7dd3fc); color:#0f172a; text-decoration:none; font-weight:800}
-      .note{padding:0 22px 16px; color:#0f172a}
+      .row{display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+      .qr{width:140px; height:140px; border:1px solid #e5e7eb; padding:6px; background:#fff; border-radius:8px}
+      .note{font-size:13px; color:#475569}
+      .foot{font-size:12px; color:#6b7280; padding:10px 22px 18px}
+      .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#eef9ff; border:1px solid #bae6fd; color:#0b1a2b; font-weight:700}
+      .why{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+      @media (max-width:700px){ .why{grid-template-columns:1fr} }
+      .card{border:1px solid #e5e7eb; border-radius:10px; padding:12px; background:#fff}
+      .card h4{margin:0 0 6px 0}
     `;
     const html = `
     <!doctype html><html><head><meta charset="utf-8"><title>Potvrda ${data.entry_id}</title>
@@ -415,44 +407,78 @@
             <h1 class="title">Potvrda prijave • ID: ${data.entry_id}</h1>
             <div class="muted">Centrotours B2B Workshop 2025 • Swissotel Sarajevo • 14. nov 2025</div>
           </div>
-          <a class="btn" href="#" onclick="window.print();return false;">🖨️ Print / Save as PDF</a>
+          <a class="pill" href="#" onclick="window.print();return false;">🖨️ Print / Sačuvaj PDF</a>
         </div>
-        <div class="box">
+
+        <div class="sec">
+          <h3 class="h">Gdje i zašto</h3>
+          <div class="why">
+            <div class="card">
+              <h4>Lokacija & vrijeme</h4>
+              <div>📍 Swissotel Sarajevo</div>
+              <div>🗓️ 14. nov 2025 • ⏰ 10:00–18:00</div>
+              <div class="note">Ulaz uz skeniranje QR koda sa ove potvrde.</div>
+            </div>
+            <div class="card">
+              <h4>Svrha</h4>
+              <div>Najveći turistički B2B događaj u BiH: 100+ agencija & 30+ hotela iz Turske.</div>
+              <div class="note">Planirani su unaprijed zakazani sastanci (B2B) sa hotelskim partnerima.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec">
+          <h3 class="h">Osnovne informacije o agenciji</h3>
           <div class="grid">
             <div class="tt">Naziv agencije</div><div>${data.nazivAgencije||''}</div>
             <div class="tt">Grad / sjedište</div><div>${data.grad||''}</div>
             <div class="tt">Web</div><div>${data.web||''}</div>
             <div class="tt">Broj zaposlenih</div><div>${data.brojZaposlenih||''}</div>
             <div class="tt">Godina osnivanja</div><div>${data.godinaOsnivanja||''}</div>
-            <div class="tt">Kontakt</div><div>${data.imePrezime||''} — ${data.pozicija||''}</div>
+          </div>
+        </div>
+
+        <div class="sec">
+          <h3 class="h">Kontakt osoba</h3>
+          <div class="grid">
+            <div class="tt">Ime i prezime</div><div>${data.imePrezime||''}</div>
+            <div class="tt">Pozicija</div><div>${data.pozicija||''}</div>
             <div class="tt">E-mail</div><div>${data.email||''}</div>
             <div class="tt">Telefon</div><div>${data.telefon||''}</div>
+          </div>
+        </div>
+
+        <div class="sec">
+          <h3 class="h">B2B profil & logistika</h3>
+          <div class="grid">
             <div class="tt">Tržišta</div><div>${data.trzista||''}</div>
-            <div class="tt">Aranžmana godišnje</div><div>${data.brojAranzmana||''}</div>
             <div class="tt">Destinacije</div><div>${data.destinacije||''}</div>
+            <div class="tt">Aranžmana godišnje</div><div>${data.brojAranzmana||''}</div>
             <div class="tt">Interes hotela</div><div>${data.sastanak||''}</div>
             <div class="tt">Broj osoba (B2B)</div><div>${data.brojOsoba||''}</div>
             <div class="tt">Engleski</div><div>${data.engleski||''}</div>
-            <div class="tt">Napomene</div><div>${String(data.napomene||'').replace(/</g,'&lt;')}</div>
             <div class="tt">Networking Dinner</div><div>${data.vecera||''}</div>
             <div class="tt">Smještaj</div><div>${data.smjestaj||''}</div>
-            <div class="tt">Parking/dolazak</div><div>${String(data.parking||'').replace(/</g,'&lt;')}</div>
+            <div class="tt">Parking / dolazak</div><div>${String(data.parking||'').replace(/</g,'&lt;')}</div>
             <div class="tt">Saglasnost</div><div>${data.saglasnost?'DA':'NE'}</div>
             <div class="tt">Potpis</div><div>${data.potpis||''}</div>
           </div>
+        </div>
+
+        <div class="sec">
           <div class="row">
-            <div class="note">
-              <div><strong>Verifikacija prijave</strong></div>
-              <div>Skenerom očitajte QR ili posjetite URL:</div>
-              <div style="word-break:break-all">${data.verifyURL}</div>
+            <div>
+              <div class="h" style="margin:0 0 6px 0;">QR pristup</div>
+              <div class="note">Prikažite ovaj QR kod na ulazu radi validacije prijave.</div>
             </div>
             ${qrDataURL 
               ? `<img class="qr" src="${qrDataURL}" alt="QR"/>`
               : `<div class="qr" style="display:flex;align-items:center;justify-content:center;font-size:12px;color:#64748b;text-align:center">
-                   QR nije dostupan<br/>URL je naveden lijevo
+                   QR nije dostupan
                  </div>`}
           </div>
         </div>
+
         <div class="foot">Generisano: ${new Date().toLocaleString()}</div>
       </div>
     </body></html>`;
@@ -508,7 +534,7 @@
       const modal = document.getElementById('welcomeModal');
       const btn   = document.getElementById('closeWelcome');
       const ctn   = document.getElementById('countdown');
-      let s = 10;
+      let s = 7;
       const tick = setInterval(()=>{
         s--; ctn.textContent = s;
         if(s<=0){
@@ -661,7 +687,7 @@
       try{
         const id = makeID(); entryHidden.value = id;
 
-        // PUNA verify adresa
+        // PUNA verify adresa (za Apps Script /exec)
         const verifyURL = `${scriptURL.replace(/\/exec.*/, '/exec')}?verify=${encodeURIComponent(id)}`;
 
         // Sakupi podatke + pripremi FormData
@@ -678,9 +704,9 @@
           if(j && j.ok===false) throw new Error(j.error||'Greška servera');
         }catch(_){ /* endpoint možda ne vraća JSON – ignoriši */ }
 
-        // QR sa PUNIM verifyURL
-        let qrDataUrl = window._miniQR(verifyURL, 6);
-        if (!qrDataUrl) { qrDataUrl = null; }
+        // QR sa PUNIM verifyURL — robustni generator
+        let qrDataUrl = null;
+        try { qrDataUrl = window.QRDataURL(verifyURL); } catch (err) { console.warn('QR fallback:', err); }
 
         // SIROVI HTML -> BLOB URL (stabilno otvaranje)
         const rawHTML = buildConfirmationHTML(data, qrDataUrl);
@@ -720,7 +746,7 @@
       window.scrollTo({top:0, behavior:'smooth'});
     });
 
-    // Init
+    // Confirm modal flow: init
     function init(){ setHero(0); show(0); }
     init();
   </script>
