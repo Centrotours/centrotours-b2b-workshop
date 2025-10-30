@@ -297,116 +297,141 @@
   <div class="toast" id="toast">Greška pri slanju. Provjerite vezu i pokušajte ponovo.</div>
 
   <script>
-    // === KONFIGURACIJA ===
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxf_XqH8M_q5k0nWM4_bfBTnR_0lOJdIozmlcGlErGEffhNElOtYbjjny8W7tdRaqI/exec'; // Web App URL
-    const bgByStep = {
-      1: 'destinacija-1.jpg',
-      2: 'destinacija-2.jpg',
-      3: 'destinacija-3.jpg',
-      4: 'hurgada.jpg',
-      5: 'destinacija-6.jpg',
-      6: 'destinacija-2.jpg',
-      7: 'destinacija-3.jpg'
-    };
+  // === KONFIGURACIJA ===
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxf_XqH8M_q5k0nWM4_bfBTnR_0lOJdIozmlcGlErGEffhNElOtYbjjny8W7tdRaqI/exec';
 
-    // === UI state ===
-    const form = document.getElementById('form');
-    const steps = Array.from(document.querySelectorAll('.step'));
-    const hero = document.getElementById('hero');
-    const bar = document.getElementById('bar');
-    const nextBtn = document.getElementById('next');
-    const prevBtn = document.getElementById('prev');
-    const toast = document.getElementById('toast');
-    const success = document.getElementById('success');
+  const bgByStep = {
+    1: 'destinacija-1.jpg',
+    2: 'destinacija-2.jpg',
+    3: 'destinacija-3.jpg',
+    4: 'hurgada.jpg',
+    5: 'destinacija-6.jpg',
+    6: 'destinacija-2.jpg',
+    7: 'destinacija-3.jpg'
+  };
 
-    let current = 0; // index steps
+  // === UI ===
+  const form = document.getElementById('form');
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const hero = document.getElementById('hero');
+  const bar = document.getElementById('bar');
+  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById('prev');
+  const toast = document.getElementById('toast');
+  const success = document.getElementById('success');
 
-    function setHero(stepIndex){
-      const n = stepIndex+1;
-      const img = bgByStep[n] || bgByStep[1];
-      hero.style.backgroundImage = `linear-gradient(rgba(2,6,23,.35),rgba(2,6,23,.55)), url('${img}')`;
+  let current = 0; // index
+
+  function setHero(stepIndex){
+    const n = stepIndex + 1;
+    hero.style.backgroundImage =
+      `linear-gradient(rgba(2,6,23,.35),rgba(2,6,23,.55)), url('${bgByStep[n] || bgByStep[1]}')`;
+  }
+
+  function show(i){
+    steps.forEach((el, idx) => el.classList.toggle('active', idx === i));
+    bar.style.width = (((i+1)/steps.length)*100) + '%';
+    prevBtn.disabled = (i === 0);
+    nextBtn.textContent = (i === steps.length - 1) ? 'Pošalji' : 'Dalje ⟶';
+    setHero(i);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+
+  function validateStep(){
+    const active = steps[current];
+    const inputs = active.querySelectorAll('input,select,textarea');
+    for (const el of inputs) {
+      if (el.type === 'checkbox' || el.type === 'radio') continue;
+      if (!el.checkValidity()) { el.reportValidity(); return false; }
     }
-
-    function show(i){
-      steps.forEach((el,idx)=>{ el.classList.toggle('active', idx===i); });
-      const pct = ((i+1) / steps.length) * 100; bar.style.width = pct + '%';
-      prevBtn.disabled = i===0; nextBtn.textContent = (i===steps.length-1) ? 'Pošalji' : 'Dalje ⟶';
-      setHero(i);
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    function validateStep(){
-      const active = steps[current];
-      const inputs = active.querySelectorAll('input,select,textarea');
-      for(const el of inputs){
-        if(el.type==='checkbox' || el.type==='radio') continue; // check groups separately if needed
-        if(!el.checkValidity()) { el.reportValidity(); return false; }
-      }
-      // minimal group checks for required logical groups per step
-      if(active.querySelector('legend')?.textContent?.includes('Glavna tržišta')){
-        const any = active.querySelectorAll('input[name="trzista"]:checked').length>0; if(!any){
-          showToast('Odaberite barem jedno tržište.'); return false; }
-      }
-      if(active.querySelector('legend')?.textContent?.includes('Najčešće destinacije')){
-        const any = active.querySelectorAll('input[name="destinacije"]:checked').length>0; if(!any){
-          showToast('Odaberite barem jednu destinaciju.'); return false; }
-      }
-      if(active.querySelector('legend')?.textContent?.includes('Interes za sastanke')){
-        const any = active.querySelectorAll('input[name="sastanak"]:checked').length>0; if(!any){
-          showToast('Odaberite barem jedan tip hotela.'); return false; }
-      }
-      return true;
-    }
-
-    prevBtn.addEventListener('click', ()=>{ if(current>0){ current--; show(current); }});
-
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      if(current < steps.length-1){
-        if(!validateStep()) return;
-        current++; show(current);
-        return;
-      }
-      // final submit
-      submitData();
-    });
-
-    function showToast(msg){ toast.textContent = msg; toast.classList.add('show'); setTimeout(()=> toast.classList.remove('show'), 3200); }
-
-    async function submitData(){
-      // honey pot guard
-      const bot = form.querySelector('[name="company"]').value.trim(); if(bot){ showToast('Greška.'); return; }
-      nextBtn.disabled = true; nextBtn.textContent = 'Slanje…';
-      try{
-        const fd = new FormData(form);
-        const res = await fetch(scriptURL, { method:'POST', body: fd });
-        // best effort JSON parse
-        try{ const j = await res.json(); if(j && j.ok===false) throw new Error(j.error || 'Greška servera'); }catch{ /* ignore */ }
-        form.style.display = 'none'; success.classList.add('show');
-        confetti();
-      }catch(err){
-        console.error(err); showToast('Nije poslano: ' + (err.message || err));
-      }finally{
-        nextBtn.disabled = false; nextBtn.textContent = 'Dalje ⟶';
+    // grupne provjere
+    if (active.querySelector('legend')?.textContent?.includes('Glavna tržišta')){
+      if (active.querySelectorAll('input[name="trzista"]:checked').length === 0){
+        showToast('Odaberite barem jedno tržište.'); return false;
       }
     }
-
-    // tiny confetti
-    function confetti(){
-      const c = document.createElement('canvas'); c.width = innerWidth; c.height = innerHeight; c.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:9999'; document.body.appendChild(c);
-      const ctx = c.getContext('2d'); const parts = Array.from({length:140}).map(()=>({
-        x: Math.random()*c.width, y: -20-Math.random()*200, r: 4+Math.random()*6, s: 1+Math.random()*2,
-        col:`hsl(${Math.random()*360},90%,60%)`, a:Math.random()*Math.PI
-      }));
-      let t=0; (function tick(){ t++; ctx.clearRect(0,0,c.width,c.height);
-        parts.forEach(p=>{ p.y+=p.s*2; p.x+=Math.sin((t+p.a)/20)*1.2; ctx.fillStyle=p.col; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
-        if(t<300) requestAnimationFrame(tick); else c.remove();
-      })();
+    if (active.querySelector('legend')?.textContent?.includes('Najčešće destinacije')){
+      if (active.querySelectorAll('input[name="destinacije"]:checked').length === 0){
+        showToast('Odaberite barem jednu destinaciju.'); return false;
+      }
     }
+    if (active.querySelector('legend')?.textContent?.includes('Interes za sastanke')){
+      if (active.querySelectorAll('input[name="sastanak"]:checked').length === 0){
+        showToast('Odaberite barem jedan tip hotela.'); return false;
+      }
+    }
+    return true;
+  }
 
-    // init
-    show(current);
-    setHero(0);
-  </script>
-</body>
-</html>
+  // ► “Nazad”
+  prevBtn.addEventListener('click', () => {
+    if (current > 0) { current--; show(current); }
+  });
+
+  // ► “Dalje / Pošalji” — više nije submit nego ručni kontroler
+  nextBtn.type = 'button';
+  nextBtn.addEventListener('click', async () => {
+    // ako nismo na zadnjem koraku: validiraj i idi dalje
+    if (current < steps.length - 1) {
+      if (!validateStep()) return;
+      current++; show(current);
+      return;
+    }
+    // zadnji korak = slanje
+    await submitData();
+  });
+
+  // Fallback: blokiraj prirodni submit forme (da ništa ne prekine navigaciju)
+  form.addEventListener('submit', (e) => e.preventDefault());
+
+  async function submitData(){
+    // honeypot
+    const bot = form.querySelector('[name="company"]')?.value?.trim();
+    if (bot) { showToast('Greška.'); return; }
+
+    nextBtn.disabled = true; nextBtn.textContent = 'Slanje…';
+    try {
+      const fd = new FormData(form);
+      const res = await fetch(scriptURL, { method: 'POST', body: fd });
+      try {
+        const j = await res.json();
+        if (j && j.ok === false) throw new Error(j.error || 'Greška servera');
+      } catch(_) { /* non-JSON ok */ }
+      form.style.display = 'none';
+      success.classList.add('show');
+      confetti();
+    } catch (err) {
+      console.error(err);
+      showToast('Nije poslano: ' + (err.message || err));
+    } finally {
+      nextBtn.disabled = false; nextBtn.textContent = 'Pošalji';
+    }
+  }
+
+  // mini konfeti
+  function confetti(){
+    const c = document.createElement('canvas');
+    c.width = innerWidth; c.height = innerHeight;
+    c.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:9999';
+    document.body.appendChild(c);
+    const ctx = c.getContext('2d');
+    const parts = Array.from({length:140}).map(()=>({
+      x: Math.random()*c.width, y: -20-Math.random()*200, r: 4+Math.random()*6, s: 1+Math.random()*2,
+      col:`hsl(${Math.random()*360},90%,60%)`, a:Math.random()*Math.PI
+    }));
+    let t=0; (function tick(){ t++; ctx.clearRect(0,0,c.width,c.height);
+      parts.forEach(p=>{ p.y+=p.s*2; p.x+=Math.sin((t+p.a)/20)*1.2;
+        ctx.fillStyle=p.col; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
+      if(t<300) requestAnimationFrame(tick); else c.remove();
+    })();
+  }
+
+  // init
+  show(current);
+</script>
