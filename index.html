@@ -404,7 +404,7 @@
       .foot{font-size:12px; color:#6b7280; padding:10px 22px 18px}
       .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#eef9ff; border:1px solid #bae6fd; color:#0b1a2b; font-weight:700}
       .why{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-      @media (max-width:700px){ .why{grid-template-columns:1fr} }
+      @media (max-width:700px){ .why{display:grid; grid-template-columns:1fr} }
       .card{border:1px solid #e5e7eb; border-radius:10px; padding:12px; background:#fff}
       .card h4{margin:0 0 6px 0}
     `;
@@ -433,7 +433,7 @@
             </div>
             <div class="card">
               <h4>Svrha</h4>
-              <div>Najveći turistički B2B event u BiH – 100+ turističkih agenata • 30+ hotela iz Turske.</div>
+              <div>Najveći turistički B2B event u BiH – 100+ turističkih agenata • 30+ hotela iz Turske.</div>
               <div class="note">Planirani su unaprijed zakazani sastanci (B2B) sa hotelskim partnerima.</div>
             </div>
           </div>
@@ -754,6 +754,7 @@
         const fd = new FormData(form);
         fd.set('entry_id', id);
         fd.set('verifyURL', verifyURL);
+        fd.set('attendeeList', data.attendeeList || ''); /* ⬅️ DODANO: šalje listu imena */
 
         // SLANJE
         const res = await fetch(scriptURL, { method:'POST', body: fd });
