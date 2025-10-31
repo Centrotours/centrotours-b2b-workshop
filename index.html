@@ -212,6 +212,7 @@
       <form id="form" novalidate>
         <!-- Skriveno ID + honeypot -->
         <input type="hidden" name="entry_id" id="entry_id" />
+        <input type="hidden" name="attendeeList" id="attendeeListHidden" />
         <input type="text" name="company" id="hp" style="display:none" tabindex="-1" autocomplete="off" />
 
         <!-- KORAK 1 -->
@@ -739,6 +740,9 @@
         if(/^b2bOsoba_\d+$/.test(k) && String(v).trim()) names.push(String(v).trim());
       }
       o.attendeeList = names.join(', ');
+      const hidden = document.getElementById('attendeeListHidden');
+      if (hidden) hidden.value = o.attendeeList;
+
       return o;
     }
 
@@ -779,6 +783,7 @@
         const fd = new FormData(form);
         fd.set('entry_id', id);
         fd.set('verifyURL', verifyURL);
+        fd.set('attendeeList', data.attendeeList);
 
         // SLANJE
         const res = await fetch(scriptURL, { method:'POST', body: fd });
